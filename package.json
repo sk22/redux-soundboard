@@ -7,11 +7,13 @@
     "react-dom": "^15.5.3",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
-    "styled-components": "^1.4.4"
+    "styled-components": "^1.4.5"
   },
   "devDependencies": {
+    "babel-eslint": "^7.2.2",
     "eslint": "^3.19.0",
     "eslint-config-xo-space": "^0.16.0",
+    "eslint-plugin-flowtype": "^2.30.4",
     "react-scripts": "0.9.5"
   },
   "scripts": {
@@ -21,9 +23,16 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "parser": "babel-eslint",
     "extends": [
       "react-app",
       "xo-space"
-    ]
+    ],
+    "rules": {
+      "semi": [
+        "error",
+        "never"
+      ]
+    }
   }
 }
