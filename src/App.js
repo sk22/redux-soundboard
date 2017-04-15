@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Toolbar from './components/Toolbar'
-import Sounds from './components/Sounds'
+import Content from './components/Content'
 
 const StyledApp = styled.div`
   background: #111;
@@ -11,8 +11,8 @@ const StyledApp = styled.div`
 export default () => (
   <div>
     <StyledApp>
-      <Toolbar name="hi" />
-      <Sounds />
+      <Toolbar />
+      <Content />
     </StyledApp>
   </div>
 )

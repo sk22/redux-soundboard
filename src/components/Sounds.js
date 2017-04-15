@@ -1,13 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
-import Sound from './Sound'
+import SoundTile from './SoundTile'
 import Tile from './Tile'
-
-const StyledSounds = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`
+import Grid from './Grid'
 
 const Plus = styled.span`
   color: #111;
@@ -15,14 +11,17 @@ const Plus = styled.span`
 `
 
 const Sounds = ({sounds = [], locked = false}) => (
-  <StyledSounds>
+  <Grid>
     {sounds.map((sound, i) => (
-      <Sound key={i} name={sound.name} src={sound.src} />
+      <SoundTile key={i} name={sound.name} src={sound.src} />
     ))}
     {locked || <Tile><Plus>+</Plus></Tile>}
-  </StyledSounds>
+  </Grid>
 )
 
-const mapStateToProps = state => ({sounds: state.currentSoundboard.sounds})
+const mapStateToProps = state => ({
+  sounds: state.soundboard.sounds,
+  locked: state.soundboard.locked
+})
 
 export default connect(mapStateToProps)(Sounds)

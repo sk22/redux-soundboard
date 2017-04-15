@@ -9,7 +9,12 @@ export const addSound = (name, url) => ({
   url
 })
 
-export const setCurrentSoundboard = index => ({
-  type: 'SET_CURRENT_SOUNDBOARD',
+export const setSoundboard = index => ({
+  type: 'SET_SOUNDBOARD',
   index
+})
+
+export const setView = view => ({
+  type: 'SET_VIEW',
+  view
 })
