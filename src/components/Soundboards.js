@@ -20,7 +20,7 @@ const Soundboards = ({soundboards = []}) => (
 )
 
 const mapStateToProps = state => ({
-  soundboards: state.currentSoundboards
+  soundboards: state.soundboards
 })
 
 export default connect(mapStateToProps)(Soundboards)
