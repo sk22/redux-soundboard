@@ -11,4 +11,5 @@ export default styled.div`
   color: white;
   background: #444;
   margin: 0 1rem 1rem 0;
+  border-top: .15rem solid white;
 `

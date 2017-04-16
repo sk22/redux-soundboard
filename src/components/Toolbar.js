@@ -47,7 +47,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onMenuClick: () => dispatch(setCurrentView('soundboards')),
+  onMenuClick: () => dispatch(setCurrentView('menu')),
   onEditClick: () => dispatch(setCurrentView('edit'))
 })
 

@@ -4,7 +4,7 @@ import {setCurrentSoundboard, setCurrentView} from '../actions'
 
 const initialState = {
   soundboard: 0,
-  view: 'soundboards'
+  view: 'menu'
 }
 
 export default createReducer({

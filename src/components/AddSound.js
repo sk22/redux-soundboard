@@ -22,7 +22,7 @@ const AddSound = ({dispatch}) => {
   const onSubmit = e => {
     e.preventDefault()
     const reader = new FileReader()
-    if (file) {
+    if (file && file.files.length) {
       reader.readAsDataURL(file.files[0])
     }
     reader.addEventListener('load', () => {

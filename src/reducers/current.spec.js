@@ -4,12 +4,12 @@ import {setCurrentSoundboard, setCurrentView} from '../actions'
 describe('current reducer', () => {
   it('returns correct initial state', () => {
     const result = current(undefined, {})
-    expect(result).toEqual({soundboard: 0, view: 'soundboards'})
+    expect(result).toEqual({soundboard: 0, view: 'menu'})
   })
 
   it('sets current soundboard', () => {
     const result = current(undefined, setCurrentSoundboard(2))
-    expect(result).toEqual({soundboard: 2, view: 'soundboards'})
+    expect(result).toEqual({soundboard: 2, view: 'menu'})
   })
 
   it('sets current view', () => {

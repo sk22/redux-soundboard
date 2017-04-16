@@ -16,7 +16,7 @@ const Sounds = ({sounds = [], locked = false, onPlusClick}) => (
     {sounds.map((sound, i) => (
       <SoundTile key={i} name={sound.name} src={sound.src}/>
     ))}
-    {locked || <Tile><Plus onClick={onPlusClick}>+</Plus></Tile>}
+    {locked || <Tile onClick={onPlusClick}><Plus>+</Plus></Tile>}
   </Grid>
 )
 
