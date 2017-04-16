@@ -1,10 +1,11 @@
 import {combineReducers} from 'redux'
 import soundboards from './soundboards'
+import sounds from './sounds'
+import current from './current'
 
 // Can be removed later.
 // const initialState = {
-//   currentSoundboard: 0,
-//   currentView: 'soundboards',
+//   current: {soundboard: 0, view: 'soundboards'},
 //   soundboards: {
 //     0: {...soundboardTemplate, name: 'Default'}
 //   },
@@ -13,5 +14,7 @@ import soundboards from './soundboards'
 
 // Each reducer handles actions specified by the object's keys
 export default combineReducers({
-  soundboards
+  soundboards,
+  sounds,
+  current
 })
