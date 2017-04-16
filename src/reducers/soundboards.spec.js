@@ -1,5 +1,10 @@
 import soundboards from './soundboards'
-import {addSoundboard, addSoundToSoundboard, deleteSoundboard} from '../actions'
+import {
+  addSoundboard,
+  addSoundToSoundboard,
+  deleteSoundboard,
+  updateSoundboard
+} from '../actions'
 
 describe('soundboards reducer', () => {
   it('returns correct initial state', () => {
@@ -38,6 +43,21 @@ describe('soundboards reducer', () => {
     const result = soundboards(state, deleteSoundboard(0))
     expect(result).toEqual({
       1: {name: 'Foo', sounds: [], locked: false}
+    })
+  })
+
+  it('updates a soundboard', () => {
+    const state = {
+      0: {name: 'Default', sounds: [], locked: false},
+      1: {name: 'Foo', sounds: [], locked: false}
+    }
+    const result = soundboards(state, updateSoundboard({
+      soundboard: 1,
+      update: {name: 'Bar'}
+    }))
+    expect(result).toEqual({
+      0: {name: 'Default', sounds: [], locked: false},
+      1: {name: 'Bar', sounds: [], locked: false}
     })
   })
 

@@ -5,6 +5,7 @@ import omit from 'lodash.omit'
 import {
   addSoundboard,
   deleteSoundboard,
+  updateSoundboard,
   addSoundToSoundboard
 } from '../actions'
 
@@ -32,5 +33,10 @@ export default createReducer({
       ...state[soundboard],
       sounds: [...state[soundboard].sounds, sound]
     }
+  }),
+
+  [updateSoundboard]: (state, {soundboard, update}) => ({
+    ...state,
+    [soundboard]: {...state[soundboard], ...update}
   })
 }, initialState)
