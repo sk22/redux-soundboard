@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
+import TextField from './TextField'
+import Button from './Button'
 import {addSound} from '../actions'
 
-const FormContent = styled.div`
+const BottomMargin = styled.div`
   margin-bottom: 1rem;
 `
 
@@ -31,23 +33,12 @@ const AddSound = ({dispatch}) => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <FormContent>
-        <table>
-          <tbody>
-            <tr>
-              <td><label htmlFor="name">Name</label></td>
-              <td><input type="text" id="name" ref={setName}/></td>
-            </tr>
-            <tr>
-              <td><label htmlFor="file">File</label></td>
-              <td><input type="file" ref={setFile}/></td>
-            </tr>
-          </tbody>
-        </table>
-      </FormContent>
-      <input type="submit"/>
-    </form>
+    <div>
+      <TextField type="text" id="name" placeholder="Name" ref={setName}/><br/>
+      <input type="file" ref={setFile}/><br/>
+      <BottomMargin/>
+      <Button onClick={onSubmit}>Add</Button>
+    </div>
   )
 }
 

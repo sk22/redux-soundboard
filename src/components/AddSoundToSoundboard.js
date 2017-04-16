@@ -8,6 +8,7 @@ const AddSoundToSoundboard = ({soundboard, sounds, onItemClick}) => (
   <div>
     <h2>Add sound from device</h2>
     <AddSound/>
+    <hr/>
     <h2>Choose existing sound</h2>
     <List>
       {Object.keys(sounds).map((key, i) => (

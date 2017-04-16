@@ -5,6 +5,7 @@ import Soundboard from './Soundboard'
 import Soundboards from './Soundboards'
 import AddSoundToSoundboard from './AddSoundToSoundboard'
 import EditSoundboard from './EditSoundboard'
+import EditSounds from './EditSounds'
 
 const Main = styled.main`
   padding: 1rem;
@@ -17,6 +18,7 @@ const Content = ({view}) => {
       case 'soundboard': return <Soundboard/>
       case 'addSoundToSoundboard': return <AddSoundToSoundboard/>
       case 'editSoundboard': return <EditSoundboard/>
+      case 'editSounds': return <EditSounds/>
       default: return <div>Oops.</div>
     }
   }
