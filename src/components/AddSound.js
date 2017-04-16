@@ -26,9 +26,7 @@ const AddSound = ({dispatch}) => {
       reader.readAsDataURL(file.files[0])
     }
     reader.addEventListener('load', () => {
-      console.log('read')
-      console.log(reader.result)
-      dispatch(addSound(name.value, reader.result))
+      dispatch(addSound({name: name.value || 'Unnamed', src: reader.result}))
     })
   }
 

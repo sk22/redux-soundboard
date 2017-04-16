@@ -11,22 +11,23 @@ const Plus = styled.span`
   font-size: 5rem;
 `
 
-const Sounds = ({sounds = [], locked = false, onPlusClick}) => (
+const Sounds = ({sounds, locked, onPlusClick}) => (
   <Grid>
-    {sounds.map((sound, i) => (
-      <SoundTile key={i} name={sound.name} src={sound.src}/>
+    {Object.keys(sounds).map((key, i) => (
+      <SoundTile key={i} name={sounds[key].name} src={sounds[key].src}/>
     ))}
     {locked || <Tile onClick={onPlusClick}><Plus>+</Plus></Tile>}
   </Grid>
 )
 
 const mapStateToProps = state => ({
-  sounds: state.current.soundboard.sounds,
-  locked: state.current.soundboard.locked
+  sounds: state.soundboards[state.current.soundboard].sounds
+    .map(key => state.sounds[key]),
+  locked: state.soundboards[state.current.soundboard].locked
 })
 
 const mapDispatchToProps = dispatch => ({
-  onPlusClick: () => dispatch(setCurrentView('addSound'))
+  onPlusClick: () => dispatch(setCurrentView('addSoundToSoundboard'))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sounds)
