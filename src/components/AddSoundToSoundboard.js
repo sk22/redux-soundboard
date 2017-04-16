@@ -1,29 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
 import {connect} from 'react-redux'
 import AddSound from './AddSound'
+import {List, ListItem} from './List'
 import {addSoundToSoundboard, setCurrentView} from '../actions'
-
-const List = styled.div`
-  display: flex;
-  margin-top: 1rem;
-  flex-direction: column;
-  list-style-type: none;
-`
-
-const ListItem = styled.button`
-  display: inline-flex;
-  color: white;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
-  align-items: center;
-  justify-content: center;
-  height: 3rem;
-  border: none;
-  border-top: .15rem solid white;
-  margin-bottom: 1rem;
-  background: #444;
-`
 
 const AddSoundToSoundboard = ({soundboard, sounds, onItemClick}) => (
   <div>

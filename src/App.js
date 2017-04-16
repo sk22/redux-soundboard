@@ -49,6 +49,11 @@ const editIcon = {
   onClick: dispatch => dispatch(setCurrentView('editSoundboard'))
 }
 
+const backIcon = {
+  icon: 'back',
+  onClick: dispatch => dispatch(setCurrentView('soundboard'))
+}
+
 const mapStateToProps = ({soundboards, current: {view, soundboard}}) => {
   switch (view) {
     case 'soundboard': return {
@@ -59,6 +64,10 @@ const mapStateToProps = ({soundboards, current: {view, soundboard}}) => {
     case 'soundboards': return {
       left: menuIcon,
       center: <Heading>Soundboards</Heading>
+    }
+    case 'editSoundboard': return {
+      left: backIcon,
+      center: <Heading>Edit Soundboard</Heading>
     }
     default: return {left: menuIcon}
   }

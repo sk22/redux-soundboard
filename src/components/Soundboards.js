@@ -10,7 +10,7 @@ const Plus = styled.span`
   font-size: 5rem;
 `
 
-const Soundboards = ({soundboards = {}}) => (
+const Soundboards = ({soundboards}) => (
   <Grid>
     {Object.keys(soundboards).map((key, i) => (
       <SoundboardTile key={i} index={i} name={soundboards[key].name}/>

@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import Soundboard from './Soundboard'
 import Soundboards from './Soundboards'
 import AddSoundToSoundboard from './AddSoundToSoundboard'
+import EditSoundboard from './EditSoundboard'
 
 const Main = styled.main`
   padding: 1rem;
@@ -15,6 +16,7 @@ const Content = ({view}) => {
       case 'soundboards': return <Soundboards/>
       case 'soundboard': return <Soundboard/>
       case 'addSoundToSoundboard': return <AddSoundToSoundboard/>
+      case 'editSoundboard': return <EditSoundboard/>
       default: return <div>Oops.</div>
     }
   }
