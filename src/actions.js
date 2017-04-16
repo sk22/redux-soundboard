@@ -3,10 +3,10 @@ export const addSoundboard = name => ({
   name
 })
 
-export const addSound = (name, url) => ({
+export const addSound = (name, src) => ({
   type: 'ADD_SOUND',
   name,
-  url
+  src
 })
 
 export const setSoundboard = index => ({

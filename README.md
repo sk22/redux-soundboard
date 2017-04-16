@@ -329,7 +329,7 @@ import Button from './Button'; // Import a component from another file
 
 class DangerButton extends Component {
   render() {
-    return <Button color="red" />;
+    return <Button color="red"/>;
   }
 }
 
@@ -369,7 +369,7 @@ import './Button.css'; // Tell Webpack that Button.js uses these styles
 class Button extends Component {
   render() {
     // You can use them as regular CSS styles
-    return <div className="Button" />;
+    return <div className="Button"/>;
   }
 }
 ```
@@ -484,7 +484,7 @@ console.log(logo); // /logo.84287d09.png
 
 function Header() {
   // Import result is the URL of your image
-  return <img src={logo} alt="Logo" />;
+  return <img src={logo} alt="Logo"/>;
 }
 
 export default Header;
@@ -549,7 +549,7 @@ render() {
   // Note: this is an escape hatch and should be used sparingly!
   // Normally we recommend using `import` for getting asset URLs
   // as described in “Adding Images and Fonts” above this section.
-  return <img src={process.env.PUBLIC_URL + '/img/logo.png'} />;
+  return <img src={process.env.PUBLIC_URL + '/img/logo.png'}/>;
 }
 ```
 
@@ -672,7 +672,7 @@ render() {
     <div>
       <small>You are running this application in <b>{process.env.NODE_ENV}</b> mode.</small>
       <form>
-        <input type="hidden" defaultValue={process.env.REACT_APP_SECRET_CODE} />
+        <input type="hidden" defaultValue={process.env.REACT_APP_SECRET_CODE}/>
       </form>
     </div>
   );
@@ -687,7 +687,7 @@ When you load the app in the browser and inspect the `<input>`, you will see its
 <div>
   <small>You are running this application in <b>development</b> mode.</small>
   <form>
-    <input type="hidden" value="abcdef" />
+    <input type="hidden" value="abcdef"/>
   </form>
 </div>
 ```
@@ -961,7 +961,7 @@ import App from './App';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<App/>, div);
 });
 ```
 
@@ -981,7 +981,7 @@ import { shallow } from 'enzyme';
 import App from './App';
 
 it('renders without crashing', () => {
-  shallow(<App />);
+  shallow(<App/>);
 });
 ```
 
@@ -997,7 +997,7 @@ import { shallow } from 'enzyme';
 import App from './App';
 
 it('renders welcome message', () => {
-  const wrapper = shallow(<App />);
+  const wrapper = shallow(<App/>);
   const welcome = <h2>Welcome to React</h2>;
   // expect(wrapper.contains(welcome)).to.equal(true);
   expect(wrapper.contains(welcome)).toEqual(true);

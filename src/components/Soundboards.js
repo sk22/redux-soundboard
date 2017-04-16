@@ -13,14 +13,14 @@ const Plus = styled.span`
 const Soundboards = ({soundboards = []}) => (
   <Grid>
     {soundboards.map((soundboard, i) => (
-      <SoundboardTile key={i} index={i} name={soundboard.name} />
+      <SoundboardTile key={i} index={i} name={soundboard.name}/>
     ))}
     <Tile><Plus>+</Plus></Tile>
   </Grid>
 )
 
 const mapStateToProps = state => ({
-  soundboards: state.soundboards
+  soundboards: state.currentSoundboards
 })
 
 export default connect(mapStateToProps)(Soundboards)

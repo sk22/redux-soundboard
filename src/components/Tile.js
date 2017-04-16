@@ -8,9 +8,7 @@ export default styled.div`
   min-width: 7rem;
   height: 7rem;
   padding: 1rem;
-  margin: 1rem 0 0 1rem;
   color: white;
   background: #444;
-  user-select: none;
-  -webkit-touch-callout: none;
+  margin: 0 1rem 1rem 0;
 `

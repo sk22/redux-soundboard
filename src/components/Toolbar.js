@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
-import Hamburger from './Hamburger'
 import {setView} from '../actions'
 
 const StyledToolbar = styled.nav`
@@ -16,20 +15,39 @@ const Heading = styled.h1`
   color: white;
 `
 
-const Toolbar = ({name, onMenuClick}) => (
+const hidden = hidden => ({
+  style: {
+    visibility: hidden ? 'hidden' : 'visible'
+  }
+})
+
+const Toolbar = ({name, onMenuClick, onEditClick, menuHidden, editHidden}) => (
   <StyledToolbar>
-    <Hamburger onClick={onMenuClick} />
+    <img
+      src="/icons/menu.svg"
+      alt="menu"
+      onClick={onMenuClick}
+      {...hidden(menuHidden)}
+   />
     <Heading>{name}</Heading>
-    <div />
+    <img
+      src="/icons/edit.svg"
+      alt="edit"
+      onClick={onEditClick}
+      {...hidden(editHidden)}
+   />
   </StyledToolbar>
 )
 
 const mapStateToProps = state => ({
-  name: state.view === 'soundboard' ? state.soundboard.name : 'Soundboards'
+  name: state.currentView === 'soundboard' ? state.currentSoundboard.name : 'Soundboards',
+  menuHidden: state.currentView === 'soundboards',
+  editHidden: state.currentView !== 'soundboard'
 })
 
 const mapDispatchToProps = dispatch => ({
-  onMenuClick: () => dispatch(setView('soundboards'))
+  onMenuClick: () => dispatch(setView('soundboards')),
+  onEditClick: () => dispatch(setView('edit'))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Toolbar)

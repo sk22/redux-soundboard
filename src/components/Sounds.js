@@ -4,24 +4,29 @@ import styled from 'styled-components'
 import SoundTile from './SoundTile'
 import Tile from './Tile'
 import Grid from './Grid'
+import {setView} from '../actions'
 
 const Plus = styled.span`
   color: #111;
   font-size: 5rem;
 `
 
-const Sounds = ({sounds = [], locked = false}) => (
+const Sounds = ({sounds = [], locked = false, onPlusClick}) => (
   <Grid>
     {sounds.map((sound, i) => (
-      <SoundTile key={i} name={sound.name} src={sound.src} />
+      <SoundTile key={i} name={sound.name} src={sound.src}/>
     ))}
-    {locked || <Tile><Plus>+</Plus></Tile>}
+    {locked || <Tile><Plus onClick={onPlusClick}>+</Plus></Tile>}
   </Grid>
 )
 
 const mapStateToProps = state => ({
-  sounds: state.soundboard.sounds,
-  locked: state.soundboard.locked
+  sounds: state.currentSoundboard.sounds,
+  locked: state.currentSoundboard.locked
 })
 
-export default connect(mapStateToProps)(Sounds)
+const mapDispatchToProps = dispatch => ({
+  onPlusClick: () => dispatch(setView('addSound'))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sounds)
