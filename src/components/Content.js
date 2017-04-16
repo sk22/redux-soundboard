@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
 import Sounds from './Sounds'
+import Menu from './Menu'
 import Soundboards from './Soundboards'
 import AddSound from './AddSound'
 
@@ -12,8 +13,9 @@ const Main = styled.main`
 const Content = ({view}) => {
   const getComponent = () => {
     switch (view) {
-      case 'soundboard': return <Sounds/>
       case 'soundboards': return <Soundboards/>
+      case 'soundboard': return <Sounds/>
+      case 'menu': return <Menu/>
       case 'addSound': return <AddSound/>
       default: return <div>Oops.</div>
     }
@@ -22,7 +24,7 @@ const Content = ({view}) => {
 }
 
 const mapStateToProps = state => ({
-  view: state.currentView
+  view: state.current.view
 })
 
 export default connect(mapStateToProps)(Content)

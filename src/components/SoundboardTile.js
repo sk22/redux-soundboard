@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Tile from './Tile'
-import {setSoundboard} from '../actions'
+import {setCurrentSoundboard, setCurrentView} from '../actions'
 
 const SoundboardTile = ({onTileClick, name, index}) => (
   <Tile onClick={() => onTileClick(index)}>
@@ -10,7 +10,10 @@ const SoundboardTile = ({onTileClick, name, index}) => (
 )
 
 const mapDispatchToProps = dispatch => ({
-  onTileClick: index => dispatch(setSoundboard(index))
+  onTileClick: index => {
+    dispatch(setCurrentSoundboard(index))
+    dispatch(setCurrentView('soundboard'))
+  }
 })
 
 export default connect(null, mapDispatchToProps)(SoundboardTile)

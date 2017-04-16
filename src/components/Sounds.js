@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import SoundTile from './SoundTile'
 import Tile from './Tile'
 import Grid from './Grid'
-import {setView} from '../actions'
+import {setCurrentView} from '../actions'
 
 const Plus = styled.span`
   color: #111;
@@ -21,12 +21,12 @@ const Sounds = ({sounds = [], locked = false, onPlusClick}) => (
 )
 
 const mapStateToProps = state => ({
-  sounds: state.currentSoundboard.sounds,
-  locked: state.currentSoundboard.locked
+  sounds: state.current.soundboard.sounds,
+  locked: state.current.soundboard.locked
 })
 
 const mapDispatchToProps = dispatch => ({
-  onPlusClick: () => dispatch(setView('addSound'))
+  onPlusClick: () => dispatch(setCurrentView('addSound'))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sounds)

@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
-import {setView} from '../actions'
+import {setCurrentView} from '../actions'
 
 const StyledToolbar = styled.nav`
   display: flex;
@@ -40,14 +40,15 @@ const Toolbar = ({name, onMenuClick, onEditClick, menuHidden, editHidden}) => (
 )
 
 const mapStateToProps = state => ({
-  name: state.currentView === 'soundboard' ? state.currentSoundboard.name : 'Soundboards',
-  menuHidden: state.currentView === 'soundboards',
-  editHidden: state.currentView !== 'soundboard'
+  name: state.current.view === 'soundboard' ?
+    state.soundboards[state.current.soundboard].name : 'Soundboards',
+  menuHidden: state.current.view === 'soundboards',
+  editHidden: state.current.view !== 'soundboard'
 })
 
 const mapDispatchToProps = dispatch => ({
-  onMenuClick: () => dispatch(setView('soundboards')),
-  onEditClick: () => dispatch(setView('edit'))
+  onMenuClick: () => dispatch(setCurrentView('soundboards')),
+  onEditClick: () => dispatch(setCurrentView('edit'))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Toolbar)
