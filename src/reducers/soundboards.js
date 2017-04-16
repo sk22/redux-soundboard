@@ -5,11 +5,7 @@ import omit from 'lodash.omit'
 import {
   addSoundboard,
   deleteSoundboard,
-  addSound,
-  deleteSound,
-  addSoundToSoundboard,
-  setCurrentSoundboard,
-  setCurrentView
+  addSoundToSoundboard
 } from '../actions'
 
 const soundboardTemplate = {
