@@ -3,12 +3,12 @@ import styled from 'styled-components'
 
 const StyledIcon = styled.span`
   line-height: 0;
-  padding: .5rem;
+  ${({compact}) => compact || 'padding: .5rem'};
   margin: .5rem;
   border-radius: 100%;
   cursor: pointer;
   &:active {
-    background: #222;
+    background: ${({active}) => active || '#222'};
   }
 `
 

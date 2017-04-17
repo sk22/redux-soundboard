@@ -1,6 +1,12 @@
 import React from 'react'
 import Icon from './Icon'
-import {setCurrentView, deleteSoundboard} from '../actions'
+import {
+  setCurrentView,
+  deleteSoundboard,
+  setShowShare,
+  setShowImport,
+  setShareUrl
+} from '../actions'
 import {exportSoundboard} from '../share'
 
 const prefix = '/icons/'
@@ -46,8 +52,18 @@ export const ShareSoundboardIcon = ({dispatch, ...data}) => (
     src="share.svg"
     onClick={async () => {
       console.log('clicked share')
-      const result = await exportSoundboard(data)
-      console.log(result)
+      dispatch(setShowShare(true))
+      const url = await exportSoundboard(data)
+      dispatch(setShareUrl(url))
+      console.log(url)
     }}
+  />
+)
+
+export const ImportSoundboardIcon = ({dispatch}) => (
+  <Icon
+    {...{prefix}}
+    src="import.svg"
+    onClick={() => dispatch(setShowImport(true))}
   />
 )

@@ -1,5 +1,7 @@
 import 'isomorphic-fetch'
 import pick from 'lodash.pick'
+import {addSound, addSoundboard} from './actions'
+import {getHighestKey} from './reducers/util'
 
 const gistApiUrl = 'https://api.github.com/gists'
 
@@ -20,4 +22,17 @@ export const exportSoundboard = async ({state, soundboard}) => {
   })
   const data = await response.json()
   return data.url
+}
+
+export const importSoundboard = async ({state, url, dispatch}) => {
+  const response = await fetch(url)
+  const data = await response.json()
+  const soundboard = JSON.parse(data.files['soundboard.json'].content)
+  const sounds = JSON.parse(data.files['sounds.json'].content)
+  const highestKey = getHighestKey(state.sounds)
+  soundboard.sounds.forEach(key => dispatch(addSound(sounds[key])))
+  dispatch(addSoundboard({
+    ...soundboard,
+    sounds: Object.keys(sounds).map((_, i) => highestKey + i + 1)
+  }))
 }

@@ -5,7 +5,11 @@ import TextField from './TextField'
 import Button from './Button'
 import {addSound} from '../actions'
 
-const BottomMargin = styled.div`
+const LongButton = styled(Button)`
+  width: 100%;
+`
+
+const Margin = styled.div`
   margin-bottom: 1rem;
 `
 
@@ -37,8 +41,9 @@ const AddSound = ({dispatch}) => {
       <TextField type="text" id="name" placeholder="Name" innerRef={setName}/>
       <br/>
       <input type="file" ref={setFile}/><br/>
-      <BottomMargin/>
-      <Button onClick={onSubmit}>Add</Button>
+      <Margin/>
+      <LongButton onClick={onSubmit}>Add</LongButton>
+      <Margin/>
     </div>
   )
 }

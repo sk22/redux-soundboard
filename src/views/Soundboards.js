@@ -4,11 +4,12 @@ import styled from 'styled-components'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import {MenuIcon, EditIcon} from '../components/navigation-icons'
+import {MenuIcon, EditIcon, ImportSoundboardIcon} from '../components/navigation-icons'
 
 import SoundboardTile from '../components/SoundboardTile'
 import Tile from '../components/Tile'
 import Grid from '../components/Grid'
+import ShareImportPopup from '../components/ShareImportPopup'
 import {addSoundboard} from '../actions'
 
 const Plus = styled.span`
@@ -20,7 +21,10 @@ const Soundboards = ({dispatch, soundboards, onPlusClick}) => (
   <div>
     <Toolbar
       left={<MenuIcon/>}
-      right={<EditIcon {...{dispatch}} view="editGlobal"/>}
+      right={[
+        <ImportSoundboardIcon {...{dispatch}} key="0"/>,
+        <EditIcon {...{dispatch}} view="editGlobal" key="1"/>
+      ]}
     >Soundboards</Toolbar>
     <Main>
       <Grid>
@@ -30,6 +34,7 @@ const Soundboards = ({dispatch, soundboards, onPlusClick}) => (
         <Tile onClick={onPlusClick}><Plus>+</Plus></Tile>
       </Grid>
     </Main>
+    <ShareImportPopup/>
   </div>
 )
 

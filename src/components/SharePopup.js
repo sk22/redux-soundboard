@@ -1,14 +1,11 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import styled from 'styled-components'
 import Popup from './Popup'
+import Button from './Button'
 
-const SharePopup = ({share: {show}}) => (
-  <Popup
-    style={{display: show || 'none'}}
-    onCloseRequest={() => console.log('close request')}
-  >Share</Popup>
-)
+export const PopupButton = styled(Button)`
+  margin-left: 1rem;
+`
 
-const mapStateToProps = ({share}) => ({share})
-
-export default connect(mapStateToProps)(SharePopup)
+export default styled(Popup)`
+  display: ${({show}) => show ? 'flex' : 'none'}
+`

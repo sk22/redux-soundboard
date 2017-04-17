@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import SharePopup from '../components/SharePopup'
+import ShareExportPopup from '../components/ShareExportPopup'
 import {
   MenuIcon,
   EditIcon,
@@ -44,7 +44,7 @@ const Sounds = ({dispatch, state, soundboard, sounds, onPlusClick}) => (
         {soundboard.locked || <Tile onClick={onPlusClick}><Plus>+</Plus></Tile>}
       </Grid>
     </Main>
-    <SharePopup/>
+    <ShareExportPopup/>
   </div>
 )
 

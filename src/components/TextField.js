@@ -6,7 +6,7 @@ export default styled.input`
   height: 3rem;
   padding-left: .5rem;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   background: #333;
   border: none;
   border-top: .15rem solid white;

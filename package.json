@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "clipboard": "^1.6.1",
     "isomorphic-fetch": "^2.2.1",
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
