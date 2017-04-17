@@ -78,4 +78,15 @@ describe('soundboards reducer', () => {
     ))
     expect(result).toEqual({0: {name: 'Zero', sounds: [], locked: false}})
   })
+
+  it('adds default soundboard when no payload given', () => {
+    const result = soundboards({}, addSoundboard())
+    expect(result).toEqual({
+      0: {
+        name: 'New Soundboard',
+        sounds: [],
+        locked: false
+      }
+    })
+  })
 })

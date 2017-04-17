@@ -10,7 +10,7 @@ import {
 } from '../actions'
 
 const soundboardTemplate = {
-  name: 'Unnamed',
+  name: 'New Soundboard',
   sounds: [],
   locked: false
 }
