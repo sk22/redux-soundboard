@@ -1,14 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {List, ListItem} from './List'
-import {deleteSound} from '../actions'
+import {deleteSoundboard} from '../actions'
 
 
-const EditSounds = ({sounds, onDelete}) => {
+const EditSounds = ({soundboards, onDelete}) => {
   return (
     <div>
       <List>
-        {Object.keys(sounds).map((key, i) => (
+        {Object.keys(soundboards).map((key, i) => (
           <ListItem
             key={i}
             right={
@@ -17,18 +17,18 @@ const EditSounds = ({sounds, onDelete}) => {
                 alt="delete"
                 src="/icons/delete.svg"
               />}
-          >{sounds[key].name}</ListItem>
+          >{soundboards[key].name}</ListItem>
         ))}
       </List>
     </div>
   )
 }
 
-const mapStateToProps = ({sounds}) => ({sounds})
+const mapStateToProps = ({soundboards}) => ({soundboards})
 
 const mapDispatchToProps = dispatch => ({
   onDelete: key => {
-    dispatch(deleteSound(key))
+    dispatch(deleteSoundboard(key))
   }
 })
 

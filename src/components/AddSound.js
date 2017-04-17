@@ -34,7 +34,8 @@ const AddSound = ({dispatch}) => {
 
   return (
     <div>
-      <TextField type="text" id="name" placeholder="Name" ref={setName}/><br/>
+      <TextField type="text" id="name" placeholder="Name" innerRef={setName}/>
+      <br/>
       <input type="file" ref={setFile}/><br/>
       <BottomMargin/>
       <Button onClick={onSubmit}>Add</Button>

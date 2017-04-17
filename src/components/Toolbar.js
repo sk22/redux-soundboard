@@ -10,8 +10,15 @@ const StyledToolbar = styled.nav`
   padding: 0 1rem;
 `
 
+const IconDiv = styled.div`
+  width: 1.5rem
+  height: 1.5rem
+`
+
 export default ({left, center, right}) => (
   <StyledToolbar>
-    {left}{center}{right}
+    <IconDiv>{left}</IconDiv>
+    {center}
+    <IconDiv>{right}</IconDiv>
   </StyledToolbar>
 )

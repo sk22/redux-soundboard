@@ -1,11 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {List, ListItem} from './List'
+import TextField from './TextField'
 import {updateSoundboard} from '../actions'
 
-
 const EditSoundboard = ({
-  soundboardKey, soundboard, sounds, soundKeys, onNameChange, onDelete
+  soundboardKey, sounds, soundboard, soundKeys, onNameChange, onDelete
 }) => {
   let name
   let setName = n => {
@@ -14,10 +14,12 @@ const EditSoundboard = ({
 
   return (
     <div>
-      <input
+      <TextField
         type="text"
+        id="name"
+        placeholder="Name"
         value={soundboard.name}
-        ref={setName}
+        innerRef={setName}
         onChange={() => onNameChange(soundboardKey, name.value)}
       />{' '}
       <List>

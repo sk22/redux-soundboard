@@ -8,7 +8,7 @@ const SoundTile = ({src, name}) => {
     audio.play()
   }
   return (
-    <Tile onClick={play}>
+    <Tile onMouseDown={play}>
       <h2>{name}</h2>
     </Tile>
   )
