@@ -5,7 +5,7 @@ import EditSounds from '../components/EditSounds'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import {BackIcon} from '../components/navigation-icons'
+import {BackIcon} from '../components/Icons'
 
 const EditGlobal = ({dispatch}) => (
   <div>

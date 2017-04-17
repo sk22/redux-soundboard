@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Icon from './Icon'
+import close from '../icons/close.svg'
 
 const StyledPopup = styled.aside`
   display: flex;
@@ -23,8 +24,7 @@ export default ({children, onCloseRequest, ...props}) => (
     <Content>{children}</Content>
     <Icon
       compact
-      prefix={process.env.PUBLIC_URL + '/icons/'}
-      src="close.svg"
+      src={close}
       alt="close"
       active="none"
       onClick={onCloseRequest}

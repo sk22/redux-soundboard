@@ -9,7 +9,7 @@ import {
   MenuIcon,
   EditIcon,
   ShareSoundboardIcon
-} from '../components/navigation-icons'
+} from '../components/Icons'
 
 import SoundTile from '../components/SoundTile'
 import Tile from '../components/Tile'

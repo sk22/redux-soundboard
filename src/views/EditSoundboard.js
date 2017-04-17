@@ -3,7 +3,8 @@ import {connect} from 'react-redux'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import {DeleteSoundboardIcon, BackIcon} from '../components/navigation-icons'
+import {DeleteSoundboardIcon, BackIcon} from '../components/Icons'
+import {DeleteIcon} from '../components/Icons'
 
 import {List, ListItem} from '../components/List'
 import TextField from '../components/TextField'
@@ -41,10 +42,9 @@ const EditSoundboard = ({
             <ListItem
               key={i}
               right={
-                <img
+                <DeleteIcon
+                  compact
                   onClick={() => onDelete(soundboardKey, soundKeys, i)}
-                  alt="delete"
-                  src="/icons/delete.svg"
                 />}
             >{sound.name}</ListItem>
           ))}

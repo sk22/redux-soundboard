@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import {MenuIcon, EditIcon, ImportSoundboardIcon} from '../components/navigation-icons'
+import {MenuIcon, EditIcon, ImportSoundboardIcon} from '../components/Icons'
 
 import SoundboardTile from '../components/SoundboardTile'
 import Tile from '../components/Tile'

@@ -1,9 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import Icon from './Icon'
 import {List, ListItem} from './List'
 import {deleteSound} from '../actions'
-
+import {DeleteIcon} from '../components/Icons'
 
 const EditSounds = ({sounds, onDelete}) => {
   return (
@@ -12,14 +11,7 @@ const EditSounds = ({sounds, onDelete}) => {
         {Object.keys(sounds).map((key, i) => (
           <ListItem
             key={i}
-            right={
-              <Icon
-                compact
-                prefix={process.env.PUBLIC_URL + '/icons/'}
-                src="delete.svg"
-                alt="delete"
-                onClick={() => onDelete(key)}
-              />}
+            right={<DeleteIcon compact onClick={() => onDelete(key)}/>}
           >{sounds[key].name}</ListItem>
         ))}
       </List>

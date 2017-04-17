@@ -7,38 +7,39 @@ import {
   setShowImport,
   setShareUrl
 } from '../actions'
-import {exportSoundboard} from '../share'
 
-const prefix = process.env.PUBLIC_URL + '/icons/'
+import menu from '../icons/menu.svg'
+import back from '../icons/back.svg'
+import edit from '../icons/edit.svg'
+import deleteIcon from '../icons/delete.svg'
+import share from '../icons/share.svg'
+import importIcon from '../icons/import.svg'
+import {exportSoundboard} from '../icons/share.svg'
 
 export const MenuIcon = ({dispatch, view}) => (
   <Icon
-    {...{prefix}}
-    src="menu.svg"
+    src={menu}
     onClick={() => dispatch && dispatch(setCurrentView(view || 'soundboards'))}
   />
 )
 
 export const EditIcon = ({dispatch, view}) => (
   <Icon
-    {...{prefix}}
-    src="edit.svg"
+    src={edit}
     onClick={() => dispatch(setCurrentView(view))}
   />
 )
 
 export const BackIcon = ({dispatch, view}) => (
   <Icon
-    {...{prefix}}
-    src="back.svg"
+    src={back}
     onClick={() => dispatch(setCurrentView(view))}
   />
 )
 
 export const DeleteSoundboardIcon = ({dispatch, soundboard}) => (
   <Icon
-    {...{prefix}}
-    src="delete.svg"
+    src={deleteIcon}
     onClick={() => {
       dispatch(deleteSoundboard(soundboard))
       dispatch(setCurrentView('soundboards'))
@@ -48,8 +49,7 @@ export const DeleteSoundboardIcon = ({dispatch, soundboard}) => (
 
 export const ShareSoundboardIcon = ({dispatch, ...data}) => (
   <Icon
-    {...{prefix}}
-    src="share.svg"
+    src={share}
     onClick={async () => {
       console.log('clicked share')
       dispatch(setShowShare(true))
@@ -62,8 +62,15 @@ export const ShareSoundboardIcon = ({dispatch, ...data}) => (
 
 export const ImportSoundboardIcon = ({dispatch}) => (
   <Icon
-    {...{prefix}}
-    src="import.svg"
+    src={importIcon}
     onClick={() => dispatch(setShowImport(true))}
+  />
+)
+
+export const DeleteIcon = props => (
+  <Icon
+    {...props}
+    src={deleteIcon}
+    alt="delete"
   />
 )

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import {BackIcon} from '../components/navigation-icons'
+import {BackIcon} from '../components/Icons'
 
 import AddSound from '../components/AddSound'
 import {List, ListItem} from '../components/List'
