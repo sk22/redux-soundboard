@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import {editIcon} from '../navigation'
+import {MenuIcon, EditIcon} from '../components/navigation-icons'
 
 import SoundboardTile from '../components/SoundboardTile'
 import Tile from '../components/Tile'
@@ -16,11 +16,12 @@ const Plus = styled.span`
   font-size: 5rem;
 `
 
-const Soundboards = ({soundboards, onPlusClick}) => (
+const Soundboards = ({dispatch, soundboards, onPlusClick}) => (
   <div>
-    <Toolbar right={editIcon('editGlobal')}>
-      Soundboards
-    </Toolbar>
+    <Toolbar
+      left={<MenuIcon/>}
+      right={<EditIcon {...{dispatch}} view="editGlobal"/>}
+    >Soundboards</Toolbar>
     <Main>
       <Grid>
         {Object.keys(soundboards).map((key, i) => (
@@ -37,6 +38,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  dispatch,
   onPlusClick: () => dispatch(addSoundboard())
 })
 

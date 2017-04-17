@@ -3,14 +3,14 @@ import {connect} from 'react-redux'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import {deleteIconFor, backIcon} from '../navigation'
+import {DeleteSoundboardIcon, BackIcon} from '../components/navigation-icons'
 
 import {List, ListItem} from '../components/List'
 import TextField from '../components/TextField'
 import {updateSoundboard} from '../actions'
 
 const EditSoundboard = ({
-  soundboardKey, sounds, soundboard, soundKeys, onNameChange, onDelete
+  dispatch, soundboardKey, sounds, soundboard, soundKeys, onNameChange, onDelete
 }) => {
   let name
   let setName = n => {
@@ -20,8 +20,12 @@ const EditSoundboard = ({
   return (
     <div>
       <Toolbar
-        left={backIcon('soundboard')}
-        right={deleteIconFor(soundboardKey)}
+        left={<BackIcon {...{dispatch}} view="soundboard"/>}
+        right={
+          <DeleteSoundboardIcon
+            {...{dispatch}}
+            soundboard={soundboardKey}
+          />}
       >Edit Soundboard</Toolbar>
       <Main>
         <TextField
@@ -58,6 +62,7 @@ const mapStateToProps = ({soundboards, sounds, current: {soundboard}}) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  dispatch,
   onNameChange: (soundboard, name) => {
     dispatch(updateSoundboard({soundboard, update: {name}}))
   },

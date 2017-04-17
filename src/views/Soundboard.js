@@ -4,7 +4,11 @@ import styled from 'styled-components'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import {menuIcon, editIcon} from '../navigation'
+import {
+  MenuIcon,
+  EditIcon,
+  ShareSoundboardIcon
+} from '../components/navigation-icons'
 
 import SoundTile from '../components/SoundTile'
 import Tile from '../components/Tile'
@@ -16,11 +20,15 @@ const Plus = styled.span`
   font-size: 5rem;
 `
 
-const Sounds = ({name, sounds, locked, onPlusClick}) => (
+const Sounds = ({dispatch, state, soundboard, sounds, onPlusClick}) => (
   <div>
-    <Toolbar left={menuIcon()} right={editIcon('editSoundboard')}>
-      {name}
-    </Toolbar>
+    <Toolbar
+      left={<MenuIcon {...{dispatch}}/>}
+      right={[
+        <ShareSoundboardIcon {...{dispatch, state, soundboard}} key="0"/>,
+        <EditIcon {...{dispatch}} view="editSoundboard" key="1"/>
+      ]}
+    >{soundboard.name}</Toolbar>
     <Main>
       <Grid>
         {Object.keys(sounds).map((key, i) => (
@@ -32,20 +40,21 @@ const Sounds = ({name, sounds, locked, onPlusClick}) => (
             />
           )
         ))}
-        {locked || <Tile onClick={onPlusClick}><Plus>+</Plus></Tile>}
+        {soundboard.locked || <Tile onClick={onPlusClick}><Plus>+</Plus></Tile>}
       </Grid>
     </Main>
   </div>
 )
 
 const mapStateToProps = state => ({
+  state,
   sounds: state.soundboards[state.current.soundboard].sounds
     .map(key => state.sounds[key]),
-  locked: state.soundboards[state.current.soundboard].locked,
-  name: state.soundboards[state.current.soundboard].name
+  soundboard: state.soundboards[state.current.soundboard]
 })
 
 const mapDispatchToProps = dispatch => ({
+  dispatch,
   onPlusClick: () => dispatch(setCurrentView('addSoundToSoundboard'))
 })
 

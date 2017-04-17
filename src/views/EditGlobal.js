@@ -1,14 +1,15 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import EditSoundboards from '../components/EditSoundboards'
 import EditSounds from '../components/EditSounds'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import {backIcon} from '../navigation'
+import {BackIcon} from '../components/navigation-icons'
 
-export default () => (
+const EditGlobal = ({dispatch}) => (
   <div>
-    <Toolbar left={backIcon('soundboards')}>
+    <Toolbar left={<BackIcon {...{dispatch}} view="soundboards"/>}>
       Edit Global
     </Toolbar>
     <Main>
@@ -20,3 +21,5 @@ export default () => (
     </Main>
   </div>
 )
+
+export default connect()(EditGlobal)

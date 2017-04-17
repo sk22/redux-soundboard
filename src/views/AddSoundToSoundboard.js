@@ -3,15 +3,15 @@ import {connect} from 'react-redux'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import {backIcon} from '../navigation'
+import {BackIcon} from '../components/navigation-icons'
 
 import AddSound from '../components/AddSound'
 import {List, ListItem} from '../components/List'
 import {addSoundToSoundboard, setCurrentView} from '../actions'
 
-const AddSoundToSoundboard = ({soundboard, sounds, onItemClick}) => (
+const AddSoundToSoundboard = ({dispatch, soundboard, sounds, onItemClick}) => (
   <div>
-    <Toolbar left={backIcon('soundboard')}>
+    <Toolbar left={<BackIcon {...{dispatch}} view="soundboard"/>}>
       Add Sound
     </Toolbar>
     <Main>
@@ -37,6 +37,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  dispatch,
   onItemClick: (sound, soundboard) => {
     dispatch(addSoundToSoundboard({sound, soundboard}))
     dispatch(setCurrentView('soundboard'))

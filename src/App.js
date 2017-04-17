@@ -17,8 +17,10 @@ const getComponent = view => {
   }
 }
 
-const App = ({view, dispatch}) => (
-  <div>{getComponent(view)}</div>
+const App = ({view}) => (
+  <div>
+    {getComponent(view)}
+  </div>
 )
 
 const mapStateToProps = ({current: {view}}) => ({view})
