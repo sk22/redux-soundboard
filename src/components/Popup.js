@@ -9,8 +9,13 @@ const StyledPopup = styled.aside`
   background: #222;
 `
 
-export default ({onCloseRequest}) => (
+const Close = styled.img`
+  float: right;
+`
+
+export default ({children, onCloseRequest}) => (
   <StyledPopup>
-    
+    {children}
+    <Close src="/icons/close.svg" alt="close" onClick={onCloseRequest}/>
   </StyledPopup>
 )

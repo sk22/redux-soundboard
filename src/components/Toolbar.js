@@ -28,11 +28,11 @@ const Heading = styled.h1`
 export default ({children, left, right}) => (
   <StyledToolbar>
     <Left>
-      {Array.isArray(left) ? left : React.Children.only(left)}
+      {left && (Array.isArray(left) ? left : React.Children.only(left))}
     </Left>
     <div><Heading>{children}</Heading></div>
     <Right>
-      {Array.isArray(right) ? right : React.Children.only(right)}
+      {right && (Array.isArray(right) ? right : React.Children.only(right))}
     </Right>
   </StyledToolbar>
 )
