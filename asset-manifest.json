@@ -1,6 +1,13 @@
 {
   "main.css": "static/css/main.e10ec730.css",
   "main.css.map": "static/css/main.e10ec730.css.map",
-  "main.js": "static/js/main.032dda46.js",
-  "main.js.map": "static/js/main.032dda46.js.map"
+  "main.js": "static/js/main.82ae0eda.js",
+  "main.js.map": "static/js/main.82ae0eda.js.map",
+  "static\\media\\back.svg": "static/media/back.3a2cbf2b.svg",
+  "static\\media\\close.svg": "static/media/close.c2060f68.svg",
+  "static\\media\\delete.svg": "static/media/delete.1009eb0f.svg",
+  "static\\media\\edit.svg": "static/media/edit.203bece4.svg",
+  "static\\media\\import.svg": "static/media/import.c66592f4.svg",
+  "static\\media\\menu.svg": "static/media/menu.27b41bff.svg",
+  "static\\media\\share.svg": "static/media/share.2d9acaec.svg"
 }
