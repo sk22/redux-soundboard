@@ -9,7 +9,7 @@ import {
 } from '../actions'
 import {exportSoundboard} from '../share'
 
-const prefix = '/icons/'
+const prefix = process.env.PUBLIC_URL + '/icons/'
 
 export const MenuIcon = ({dispatch, view}) => (
   <Icon

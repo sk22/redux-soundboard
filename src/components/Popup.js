@@ -23,7 +23,8 @@ export default ({children, onCloseRequest, ...props}) => (
     <Content>{children}</Content>
     <Icon
       compact
-      src="/icons/close.svg"
+      prefix={process.env.PUBLIC_URL + '/icons/'}
+      src="close.svg"
       alt="close"
       active="none"
       onClick={onCloseRequest}

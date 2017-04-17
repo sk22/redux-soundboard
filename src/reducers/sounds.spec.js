@@ -17,9 +17,10 @@ describe('sounds reducer', () => {
 
   it('deletes a sound', () => {
     const state = {
-      0: {name: 'Beep', src: '/beep.mp3'},
+      0: {name: 'Beep', src: process.env.PUBLIC_URL + '/beep.mp3'},
       1: {name: 'Foo', src: '/x.wav'}
     }
+
     const result = sounds(state, deleteSound(0))
     expect(result).toEqual({
       1: {name: 'Foo', src: '/x.wav'}
