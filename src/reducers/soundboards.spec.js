@@ -71,4 +71,11 @@ describe('soundboards reducer', () => {
       2: {name: 'Bar', sounds: [], locked: false}
     })
   })
+
+  it('starts with 0 when all deleted', () => {
+    const result = soundboards({}, addSoundboard(
+      {name: 'Zero', sounds: [], locked: false}
+    ))
+    expect(result).toEqual({0: {name: 'Zero', sounds: [], locked: false}})
+  })
 })

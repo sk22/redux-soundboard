@@ -22,7 +22,7 @@ const initialState = {
 export default createReducer({
   [addSoundboard]: (state, soundboard) => ({
     ...state,
-    [getHighestKey(state) + 1]: {...soundboardTemplate, ...soundboard}
+    [getHighestKey(state) + 1 || 0]: {...soundboardTemplate, ...soundboard}
   }),
 
   [deleteSoundboard]: (state, key) => omit(state, key),

@@ -26,6 +26,11 @@ describe('sounds reducer', () => {
     })
   })
 
+  it('starts with 0 when all deleted', () => {
+    const result = sounds({}, addSound({name: 'Zero', src: '/'}))
+    expect(result).toEqual({0: {name: 'Zero', src: '/'}})
+  })
+
   it('increments keys based on last key\'s value', () => {
     const state = {
       1: {name: 'Foo', src: '/x.wav'}
