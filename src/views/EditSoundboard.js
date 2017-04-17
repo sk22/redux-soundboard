@@ -1,7 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {List, ListItem} from './List'
-import TextField from './TextField'
+
+import Toolbar from '../components/Toolbar'
+import Main from '../components/Main'
+import {deleteIconFor, backIcon} from '../navigation'
+
+import {List, ListItem} from '../components/List'
+import TextField from '../components/TextField'
 import {updateSoundboard} from '../actions'
 
 const EditSoundboard = ({
@@ -14,27 +19,33 @@ const EditSoundboard = ({
 
   return (
     <div>
-      <TextField
-        type="text"
-        id="name"
-        placeholder="Name"
-        value={soundboard.name}
-        innerRef={setName}
-        onChange={() => onNameChange(soundboardKey, name.value)}
-      />{' '}
-      <List>
-        {sounds.map((sound, i) => (
-          <ListItem
-            key={i}
-            right={
-              <img
-                onClick={() => onDelete(soundboardKey, soundKeys, i)}
-                alt="delete"
-                src="/icons/delete.svg"
-              />}
-          >{sound.name}</ListItem>
-        ))}
-      </List>
+      <Toolbar
+        left={backIcon('soundboard')}
+        right={deleteIconFor(soundboardKey)}
+      >Edit Soundboard</Toolbar>
+      <Main>
+        <TextField
+          type="text"
+          id="name"
+          placeholder="Name"
+          value={soundboard.name}
+          innerRef={setName}
+          onChange={() => onNameChange(soundboardKey, name.value)}
+        />{' '}
+        <List>
+          {sounds.map((sound, i) => (
+            <ListItem
+              key={i}
+              right={
+                <img
+                  onClick={() => onDelete(soundboardKey, soundKeys, i)}
+                  alt="delete"
+                  src="/icons/delete.svg"
+                />}
+            >{sound.name}</ListItem>
+          ))}
+        </List>
+      </Main>
     </div>
   )
 }

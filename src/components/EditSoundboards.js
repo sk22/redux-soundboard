@@ -3,8 +3,7 @@ import {connect} from 'react-redux'
 import {List, ListItem} from './List'
 import {deleteSoundboard} from '../actions'
 
-
-const EditSounds = ({soundboards, onDelete}) => {
+const EditSoundboards = ({soundboards, onDelete}) => {
   return (
     <div>
       <List>
@@ -32,4 +31,4 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditSounds)
+export default connect(mapStateToProps, mapDispatchToProps)(EditSoundboards)

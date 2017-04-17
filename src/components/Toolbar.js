@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import {connect} from 'react-redux'
 
 const StyledToolbar = styled.nav`
   display: flex;
@@ -11,14 +12,16 @@ const StyledToolbar = styled.nav`
 `
 
 const IconDiv = styled.div`
-  width: 1.5rem
-  height: 1.5rem
+  width: 1.5rem;
+  height: 1.5rem;
 `
 
-export default ({left, center, right}) => (
+const Toolbar = ({children, left, right, dispatch}) => (
   <StyledToolbar>
-    <IconDiv>{left}</IconDiv>
-    {center}
-    <IconDiv>{right}</IconDiv>
+    <IconDiv>{left && left(dispatch)}</IconDiv>
+    <h1>{children}</h1>
+    <IconDiv>{right && right(dispatch)}</IconDiv>
   </StyledToolbar>
 )
+
+export default connect()(Toolbar)
