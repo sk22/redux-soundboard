@@ -1,28 +1,26 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom'
 import Soundboard from './views/Soundboard'
 import Soundboards from './views/Soundboards'
 import EditSoundboard from './views/EditSoundboard'
 import EditGlobal from './views/EditGlobal'
 import AddSoundToSoundboard from './views/AddSoundToSoundboard'
 
-const getComponent = view => {
-  switch (view) {
-    case 'soundboard': return <Soundboard/>
-    case 'soundboards': return <Soundboards/>
-    case 'editSoundboard': return <EditSoundboard/>
-    case 'editGlobal': return <EditGlobal/>
-    case 'addSoundToSoundboard': return <AddSoundToSoundboard/>
-    default: return <Error/>
-  }
-}
-
-const App = ({view}) => (
-  <div>
-    {getComponent(view)}
-  </div>
+const App = () => (
+  <Router>
+    <Switch>
+      <Route exact path="/" component={Soundboards}/>
+      <Route path="/edit" component={EditGlobal}/>
+      <Route path="/:soundboard/edit" component={EditSoundboard}/>
+      <Route path="/:soundboard/add" component={AddSoundToSoundboard}/>
+      <Route path="/:soundboard" component={Soundboard}/>
+      <Route component={Error}/>
+    </Switch>
+  </Router>
 )
 
-const mapStateToProps = ({current: {view}}) => ({view})
-
-export default connect(mapStateToProps)(App)
+export default App

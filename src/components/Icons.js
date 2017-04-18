@@ -1,7 +1,6 @@
 import React from 'react'
 import Icon from './Icon'
 import {
-  setCurrentView,
   deleteSoundboard,
   setShowShare,
   setShowImport,
@@ -14,36 +13,18 @@ import edit from '../icons/edit.svg'
 import deleteIcon from '../icons/delete.svg'
 import share from '../icons/share.svg'
 import importIcon from '../icons/import.svg'
-import {exportSoundboard} from '../icons/share.svg'
+import {exportSoundboard} from '../share'
 
-export const MenuIcon = ({dispatch, view}) => (
-  <Icon
-    src={menu}
-    onClick={() => dispatch && dispatch(setCurrentView(view || 'soundboards'))}
-  />
-)
+export const MenuIcon = () => <Icon src={menu}/>
 
-export const EditIcon = ({dispatch, view}) => (
-  <Icon
-    src={edit}
-    onClick={() => dispatch(setCurrentView(view))}
-  />
-)
+export const EditIcon = () => <Icon src={edit}/>
 
-export const BackIcon = ({dispatch, view}) => (
-  <Icon
-    src={back}
-    onClick={() => dispatch(setCurrentView(view))}
-  />
-)
+export const BackIcon = () => <Icon src={back}/>
 
 export const DeleteSoundboardIcon = ({dispatch, soundboard}) => (
   <Icon
     src={deleteIcon}
-    onClick={() => {
-      dispatch(deleteSoundboard(soundboard))
-      dispatch(setCurrentView('soundboards'))
-    }}
+    onClick={() => dispatch(deleteSoundboard(soundboard))}
   />
 )
 

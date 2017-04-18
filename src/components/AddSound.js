@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import TextField from './TextField'
 import Button from './Button'
 import {addSound} from '../actions'
@@ -13,7 +14,7 @@ const Margin = styled.div`
   margin-bottom: 1rem;
 `
 
-const AddSound = ({dispatch}) => {
+const AddSound = ({match, dispatch}) => {
   let name
   let file
 
@@ -33,6 +34,11 @@ const AddSound = ({dispatch}) => {
     }
     reader.addEventListener('load', () => {
       dispatch(addSound({name: name.value || 'Unnamed', src: reader.result}))
+      // Since Link does not work this would be confusing
+      // dispatch(addSoundToSoundboard({
+      //   sound: getHighestKey(state.sounds),
+      //   soundboard: match.params.soundboard
+      // }))
     })
   }
 
@@ -42,10 +48,16 @@ const AddSound = ({dispatch}) => {
       <br/>
       <input type="file" ref={setFile}/><br/>
       <Margin/>
-      <LongButton onClick={onSubmit}>Add</LongButton>
+      <Link to={`/${match.params.soundboard}`}>
+        <LongButton onClick={onSubmit}>Add</LongButton>
+      </Link>
       <Margin/>
     </div>
   )
 }
 
-export default connect()(AddSound)
+const mapStateToProps = state => ({state})
+
+const mapDispatchToProps = dispatch => ({dispatch})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddSound)

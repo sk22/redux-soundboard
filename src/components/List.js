@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const StyledListItem = styled.button`
   display: inline-flex;
+  width: 100%;
   color: white;
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;

@@ -1,7 +1,5 @@
 import current from './current'
 import {
-  setCurrentSoundboard,
-  setCurrentView,
   setShowShare,
   setShowImport,
   setShareUrl,
@@ -12,23 +10,11 @@ describe('current reducer', () => {
   it('returns correct initial state', () => {
     const result = current(undefined, {})
     expect(result).toEqual({
-      soundboard: 0,
-      view: 'soundboards',
       showShare: false,
       showImport: false,
       url: null,
       importing: false
     })
-  })
-
-  it('sets current soundboard', () => {
-    const result = current(undefined, setCurrentSoundboard(2))
-    expect(result).toMatchObject({soundboard: 2, view: 'soundboards'})
-  })
-
-  it('sets current view', () => {
-    const result = current(undefined, setCurrentView('addSound'))
-    expect(result).toMatchObject({soundboard: 0, view: 'addSound'})
   })
 
   it('sets the share popup show state', () => {

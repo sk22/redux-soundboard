@@ -12,3 +12,8 @@ body {
   user-select: none;
   -webkit-touch-callout: none;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+}

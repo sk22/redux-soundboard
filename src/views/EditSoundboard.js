@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import Toolbar from '../components/Toolbar'
@@ -11,22 +12,35 @@ import TextField from '../components/TextField'
 import {updateSoundboard} from '../actions'
 
 const EditSoundboard = ({
-  dispatch, soundboardKey, sounds, soundboard, soundKeys, onNameChange, onDelete
+  dispatch,
+  match,
+  sounds: stateSounds,
+  soundboards,
+  onNameChange,
+  onDelete
 }) => {
   let name
   let setName = n => {
     name = n
   }
+  const {soundboard: key} = match.params
+  const soundboard = soundboards[key]
+  const sounds = soundboard.sounds.map(key => ({
+    key, ...stateSounds[key]
+  }))
+  const soundKeys = soundboard.sounds
 
   return (
     <div>
       <Toolbar
-        left={<BackIcon {...{dispatch}} view="soundboard"/>}
+        left={<Link to={`/${match.params.soundboard}`}><BackIcon/></Link>}
         right={
-          <DeleteSoundboardIcon
-            {...{dispatch}}
-            soundboard={soundboardKey}
-          />}
+          <Link to="/">
+            <DeleteSoundboardIcon
+              {...{dispatch}}
+              soundboard={key}
+            />
+          </Link>}
       >Edit Soundboard</Toolbar>
       <Main>
         <TextField
@@ -35,7 +49,7 @@ const EditSoundboard = ({
           placeholder="Name"
           value={soundboard.name}
           innerRef={setName}
-          onChange={() => onNameChange(soundboardKey, name.value)}
+          onChange={() => onNameChange(key, name.value)}
         />{' '}
         <List>
           {sounds.map((sound, i) => (
@@ -44,7 +58,7 @@ const EditSoundboard = ({
               right={
                 <DeleteIcon
                   compact
-                  onClick={() => onDelete(soundboardKey, soundKeys, i)}
+                  onClick={() => onDelete(key, soundKeys, i)}
                 />}
             >{sound.name}</ListItem>
           ))}
@@ -54,12 +68,7 @@ const EditSoundboard = ({
   )
 }
 
-const mapStateToProps = ({soundboards, sounds, current: {soundboard}}) => ({
-  soundboardKey: soundboard,
-  soundboard: soundboards[soundboard],
-  sounds: soundboards[soundboard].sounds.map(key => ({key, ...sounds[key]})),
-  soundKeys: soundboards[soundboard].sounds
-})
+const mapStateToProps = ({soundboards, sounds}) => ({soundboards, sounds})
 
 const mapDispatchToProps = dispatch => ({
   dispatch,

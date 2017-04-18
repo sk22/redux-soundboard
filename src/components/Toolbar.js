@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const StyledToolbar = styled.nav`
   display: flex;
+  line-height: 0;
   height: 3.75rem;
   background: #333;
   align-items: center;
@@ -10,6 +11,7 @@ const StyledToolbar = styled.nav`
 
 const Left = styled.div`
   display: flex;
+  align-items: center;
 `
 
 const Right = styled.div`

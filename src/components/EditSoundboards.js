@@ -11,7 +11,7 @@ const EditSoundboards = ({soundboards, onDelete}) => {
         {Object.keys(soundboards).map((key, i) => (
           <ListItem
             key={i}
-            right={<DeleteIcon onClick={() => onDelete(key)}/>}
+            right={<DeleteIcon compact onClick={() => onDelete(key)}/>}
           >{soundboards[key].name}</ListItem>
         ))}
       </List>

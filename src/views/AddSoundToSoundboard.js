@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import Toolbar from '../components/Toolbar'
@@ -7,40 +8,36 @@ import {BackIcon} from '../components/Icons'
 
 import AddSound from '../components/AddSound'
 import {List, ListItem} from '../components/List'
-import {addSoundToSoundboard, setCurrentView} from '../actions'
+import {addSoundToSoundboard} from '../actions'
 
-const AddSoundToSoundboard = ({dispatch, soundboard, sounds, onItemClick}) => (
+const AddSoundToSoundboard = ({match, sounds, onItemClick}) => (
   <div>
-    <Toolbar left={<BackIcon {...{dispatch}} view="soundboard"/>}>
+    <Toolbar left={<Link to="/"><BackIcon/></Link>}>
       Add Sound
     </Toolbar>
     <Main>
       <h2>Add sound from device</h2>
-      <AddSound/>
+      <AddSound match={match}/>
       <hr/>
       <h2>Choose existing sound</h2>
       <List>
         {Object.keys(sounds).map((key, i) => (
-          <ListItem
-            onClick={() => onItemClick(key, soundboard)}
-            key={i}
-          >{sounds[key].name}</ListItem>
+          <Link to={`/${match.params.soundboard}`} key={i}>
+            <ListItem
+              onClick={() => onItemClick(key, match.params.soundboard)}
+            >{sounds[key].name}</ListItem>
+          </Link>
         ))}
       </List>
     </Main>
   </div>
 )
 
-const mapStateToProps = state => ({
-  soundboard: state.current.soundboard,
-  sounds: state.sounds
-})
+const mapStateToProps = ({sounds}) => ({sounds})
 
 const mapDispatchToProps = dispatch => ({
-  dispatch,
   onItemClick: (sound, soundboard) => {
     dispatch(addSoundToSoundboard({sound, soundboard}))
-    dispatch(setCurrentView('soundboard'))
   }
 })
 

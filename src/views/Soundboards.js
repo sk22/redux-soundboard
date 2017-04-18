@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 import Toolbar from '../components/Toolbar'
@@ -23,13 +24,15 @@ const Soundboards = ({dispatch, soundboards, onPlusClick}) => (
       left={<MenuIcon/>}
       right={[
         <ImportSoundboardIcon {...{dispatch}} key="0"/>,
-        <EditIcon {...{dispatch}} view="editGlobal" key="1"/>
+        <Link to="/edit" key="1"><EditIcon/></Link>
       ]}
     >Soundboards</Toolbar>
     <Main>
       <Grid>
         {Object.keys(soundboards).map((key, i) => (
-          <SoundboardTile key={i} index={key} name={soundboards[key].name}/>
+          <Link to={`/${key}`} key={i}>
+            <SoundboardTile index={key} name={soundboards[key].name}/>
+          </Link>
         ))}
         <Tile onClick={onPlusClick}><Plus>+</Plus></Tile>
       </Grid>
