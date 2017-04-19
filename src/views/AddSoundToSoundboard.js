@@ -22,11 +22,11 @@ const AddSoundToSoundboard = ({history, match, sounds, onItemClick}) => (
       <h2>Choose existing sound</h2>
       <List>
         {Object.keys(sounds).map((key, i) => (
-          <Link to={`/${match.params.soundboard}`} key={i}>
+          <BackLink history={history} key={i}>
             <ListItem
               onClick={() => onItemClick(key, match.params.soundboard)}
             >{sounds[key].name}</ListItem>
-          </Link>
+          </BackLink>
         ))}
       </List>
     </Main>
