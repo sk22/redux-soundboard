@@ -18,10 +18,10 @@ const Plus = styled.span`
   font-size: 5rem;
 `
 
-const Soundboards = ({dispatch, soundboards, onPlusClick}) => (
+const Soundboards = ({dispatch, history, soundboards, onPlusClick}) => (
   <div>
     <Toolbar
-      left={<MenuIcon/>}
+      left={<MenuIcon history={history}/>}
       right={[
         <ImportSoundboardIcon {...{dispatch}} key="0"/>,
         <Link to="/edit" key="1"><EditIcon/></Link>

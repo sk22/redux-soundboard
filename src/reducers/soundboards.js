@@ -1,5 +1,5 @@
 import {createReducer} from 'redux-act'
-import {getHighestKey} from './util'
+import {generateString} from '../util'
 import omit from 'lodash.omit'
 
 import {
@@ -16,13 +16,13 @@ const soundboardTemplate = {
 }
 
 const initialState = {
-  0: {...soundboardTemplate, name: 'Default'}
+  '35c517b86f86c421da2a72c41f0e6b95': {...soundboardTemplate, name: 'Default'}
 }
 
 export default createReducer({
   [addSoundboard]: (state, soundboard) => ({
     ...state,
-    [getHighestKey(state) + 1 || 0]: {...soundboardTemplate, ...soundboard}
+    [generateString(16)(32)]: {...soundboardTemplate, ...soundboard}
   }),
 
   [deleteSoundboard]: (state, key) => omit(state, key),

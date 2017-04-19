@@ -4,20 +4,20 @@ import {connect} from 'react-redux'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import {BackIcon} from '../components/Icons'
+import {BackLink} from '../components/Icons'
 
-import AddSound from '../components/AddSound'
+import SoundAdder from '../components/SoundAdder'
 import {List, ListItem} from '../components/List'
 import {addSoundToSoundboard} from '../actions'
 
-const AddSoundToSoundboard = ({match, sounds, onItemClick}) => (
+const AddSoundToSoundboard = ({history, match, sounds, onItemClick}) => (
   <div>
-    <Toolbar left={<Link to="/"><BackIcon/></Link>}>
+    <Toolbar left={<BackLink history={history}/>}>
       Add Sound
     </Toolbar>
     <Main>
       <h2>Add sound from device</h2>
-      <AddSound match={match}/>
+      <SoundAdder match={match}/>
       <hr/>
       <h2>Choose existing sound</h2>
       <List>

@@ -21,14 +21,14 @@ const Plus = styled.span`
   font-size: 5rem;
 `
 
-const Soundboard = ({match, dispatch, state, onPlusClick}) => {
+const Soundboard = ({match, history, dispatch, state, onPlusClick}) => {
   const soundboard = state.soundboards[match.params.soundboard]
   const sounds = soundboard.sounds.map(key => state.sounds[key])
 
   return (
     <div>
       <Toolbar
-        left={<Link to="/"><MenuIcon/></Link>}
+        left={<Link to="/"><MenuIcon history={history}/></Link>}
         right={[
           <Link to={`/${match.params.soundboard}/share`} key="0">
             <ShareSoundboardIcon {...{dispatch, state, soundboard}}/>

@@ -1,5 +1,5 @@
 import {createReducer} from 'redux-act'
-import {getHighestKey} from './util'
+import {getHighestKey} from '../util'
 import omit from 'lodash.omit'
 
 import {addSound, deleteSound} from '../actions'

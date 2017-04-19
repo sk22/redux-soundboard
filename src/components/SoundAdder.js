@@ -14,7 +14,7 @@ const Margin = styled.div`
   margin-bottom: 1rem;
 `
 
-const AddSound = ({match, dispatch}) => {
+const SoundAdder = ({match, dispatch}) => {
   let name
   let file
 
@@ -60,4 +60,4 @@ const mapStateToProps = state => ({state})
 
 const mapDispatchToProps = dispatch => ({dispatch})
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddSound)
+export default connect(mapStateToProps, mapDispatchToProps)(SoundAdder)

@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import {DeleteSoundboardIcon, BackIcon} from '../components/Icons'
+import {DeleteSoundboardIcon, BackLink} from '../components/Icons'
 import {DeleteIcon} from '../components/Icons'
 
 import {List, ListItem} from '../components/List'
@@ -13,6 +13,7 @@ import {updateSoundboard} from '../actions'
 
 const EditSoundboard = ({
   dispatch,
+  history,
   match,
   sounds: stateSounds,
   soundboards,
@@ -33,7 +34,7 @@ const EditSoundboard = ({
   return (
     <div>
       <Toolbar
-        left={<Link to={`/${match.params.soundboard}`}><BackIcon/></Link>}
+        left={<BackLink history={history}/>}
         right={
           <Link to="/">
             <DeleteSoundboardIcon

@@ -9,15 +9,18 @@ import {
 describe('soundboards reducer', () => {
   it('returns correct initial state', () => {
     const result = soundboards(undefined, {})
-    expect(result).toEqual({0: {name: 'Default', sounds: [], locked: false}})
+    expect(result).toEqual({
+      '35c517b86f86c421da2a72c41f0e6b95': {
+        name: 'Default',
+        sounds: [],
+        locked: false
+      }
+    })
   })
 
   it('adds a soundboard', () => {
     const result = soundboards(undefined, addSoundboard({name: 'Foo'}))
-    expect(result).toEqual({
-      0: {name: 'Default', sounds: [], locked: false},
-      1: {name: 'Foo', sounds: [], locked: false}
-    })
+    expect(Object.keys(result).length).toBe(2)
   })
 
   it('adds a sound to a soundboard', () => {

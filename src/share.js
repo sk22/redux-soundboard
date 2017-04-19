@@ -1,7 +1,7 @@
 import 'isomorphic-fetch'
 import pick from 'lodash.pick'
 import {addSound, addSoundboard} from './actions'
-import {getHighestKey} from './reducers/util'
+import {getHighestKey} from './util'
 
 const gistApiUrl = 'https://api.github.com/gists'
 

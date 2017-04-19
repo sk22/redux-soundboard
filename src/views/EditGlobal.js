@@ -1,15 +1,14 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import EditSoundboards from '../components/EditSoundboards'
 import EditSounds from '../components/EditSounds'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import {BackIcon} from '../components/Icons'
+import {BackLink} from '../components/Icons'
 
-export default () => (
+export default ({history}) => (
   <div>
-    <Toolbar left={<Link to="/"><BackIcon/></Link>}>
+    <Toolbar left={<BackLink history={history}/>}>
       Edit Global
     </Toolbar>
     <Main>

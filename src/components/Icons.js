@@ -19,7 +19,11 @@ export const MenuIcon = () => <Icon src={menu}/>
 
 export const EditIcon = () => <Icon src={edit}/>
 
-export const BackIcon = () => <Icon src={back}/>
+export const BackIcon = props => <Icon src={back} {...props}/>
+
+export const BackLink = ({history, ...props}) => (
+  <BackIcon onClick={history.goBack} {...props}/>
+)
 
 export const DeleteSoundboardIcon = ({dispatch, soundboard}) => (
   <Icon
