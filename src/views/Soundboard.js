@@ -1,7 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import styled from 'styled-components'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
@@ -15,12 +14,8 @@ import {
 
 import SoundTile from '../components/SoundTile'
 import Tile from '../components/Tile'
+import Plus from '../components/Plus'
 import Grid from '../components/Grid'
-
-const Plus = styled.span`
-  color: #111;
-  font-size: 5rem;
-`
 
 const Soundboard = ({match, history, dispatch, state, onPlusClick}) => {
   const soundboard = state.soundboards[match.params.soundboard]

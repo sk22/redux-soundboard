@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import styled from 'styled-components'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
@@ -9,18 +8,14 @@ import {MenuIcon, EditIcon, ImportSoundboardIcon} from '../components/Icons'
 
 import Tile from '../components/Tile'
 import Grid from '../components/Grid'
+import Plus from '../components/Plus'
 import ShareImportPopup from '../components/ShareImportPopup'
 import {addSoundboard} from '../actions'
 
-const Plus = styled.span`
-  color: #111;
-  font-size: 5rem;
-`
-
-const Soundboards = ({dispatch, history, soundboards, onPlusClick}) => (
+const Soundboards = ({dispatch, soundboards, onPlusClick}) => (
   <div>
     <Toolbar
-      left={<MenuIcon history={history}/>}
+      left={<MenuIcon/>}
       right={[
         <ImportSoundboardIcon {...{dispatch}} key="0"/>,
         <Link to="/edit" key="1"><EditIcon/></Link>
