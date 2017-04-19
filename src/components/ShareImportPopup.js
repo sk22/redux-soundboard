@@ -15,7 +15,7 @@ const ShareImportPopup = (
 
   return (
     <SharePopup show={show} onCloseRequest={onCloseRequest}>
-      {importing ? 'Importing...' : [
+      {importing ? <TextField disabled value="Importing..."/> : [
         <TextField
           type="url"
           placeholder="Import URL"

@@ -4,8 +4,7 @@ import {connect} from 'react-redux'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import {DeleteSoundboardIcon, BackLink} from '../components/Icons'
-import {DeleteIcon} from '../components/Icons'
+import {DeleteSoundboardIcon, BackLink, DeleteIcon} from '../components/Icons'
 
 import {List, ListItem} from '../components/List'
 import TextField from '../components/TextField'
@@ -51,7 +50,7 @@ const EditSoundboard = ({
           value={soundboard.name}
           innerRef={setName}
           onChange={() => onNameChange(key, name.value)}
-        />{' '}
+        />
         <List>
           {sounds.map((sound, i) => (
             <ListItem

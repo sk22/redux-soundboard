@@ -30,7 +30,7 @@ const ShareExportPopup = ({showShare: show, url, onCloseRequest}) => {
         <PopupButton innerRef={setCopyButton} key="1">
           Copy
         </PopupButton>
-      ]) : 'Loading...'}
+      ]) : <TextField disabled value="Loading..."/>}
     </SharePopup>
   )
 }

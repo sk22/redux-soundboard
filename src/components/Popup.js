@@ -11,7 +11,6 @@ const StyledPopup = styled.aside`
   width: 100%;
   padding: 1rem;
   padding-right: 0;
-  background: #222;
 `
 
 const Content = styled.div`

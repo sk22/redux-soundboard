@@ -26,9 +26,7 @@ const Soundboard = ({match, history, dispatch, state, onPlusClick}) => {
       <Toolbar
         left={<BackLink history={history}><MenuIcon/></BackLink>}
         right={[
-          <Link to={`/${match.params.soundboard}/share`} key="0">
-            <ShareSoundboardIcon {...{dispatch, state, soundboard}}/>
-          </Link>,
+          <ShareSoundboardIcon {...{dispatch, state, soundboard}} key="0"/>,
           <Link to={`/${match.params.soundboard}/edit`} key="1">
             <EditIcon/>
           </Link>
