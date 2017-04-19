@@ -7,7 +7,6 @@ import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
 import {MenuIcon, EditIcon, ImportSoundboardIcon} from '../components/Icons'
 
-import SoundboardTile from '../components/SoundboardTile'
 import Tile from '../components/Tile'
 import Grid from '../components/Grid'
 import ShareImportPopup from '../components/ShareImportPopup'
@@ -31,7 +30,7 @@ const Soundboards = ({dispatch, history, soundboards, onPlusClick}) => (
       <Grid>
         {Object.keys(soundboards).map((key, i) => (
           <Link to={`/${key}`} key={i}>
-            <SoundboardTile index={key} name={soundboards[key].name}/>
+            <Tile index={key}>{soundboards[key].name}</Tile>
           </Link>
         ))}
         <Tile onClick={onPlusClick}><Plus>+</Plus></Tile>

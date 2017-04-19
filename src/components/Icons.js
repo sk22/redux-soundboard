@@ -15,14 +15,14 @@ import share from '../icons/share.svg'
 import importIcon from '../icons/import.svg'
 import {exportSoundboard} from '../share'
 
-export const MenuIcon = () => <Icon src={menu}/>
+export const MenuIcon = props => <Icon src={menu} {...props}/>
 
-export const EditIcon = () => <Icon src={edit}/>
+export const EditIcon = props => <Icon src={edit} {...props}/>
 
 export const BackIcon = props => <Icon src={back} {...props}/>
 
-export const BackLink = ({history, ...props}) => (
-  <BackIcon onClick={history.goBack} {...props}/>
+export const BackLink = ({history, children = <BackIcon/>, ...props}) => (
+  <a onClick={history.goBack} children={children} {...props}/>
 )
 
 export const DeleteSoundboardIcon = ({dispatch, soundboard}) => (

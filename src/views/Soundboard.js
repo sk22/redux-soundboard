@@ -8,6 +8,7 @@ import Main from '../components/Main'
 import ShareExportPopup from '../components/ShareExportPopup'
 import {
   MenuIcon,
+  BackLink,
   EditIcon,
   ShareSoundboardIcon
 } from '../components/Icons'
@@ -28,13 +29,13 @@ const Soundboard = ({match, history, dispatch, state, onPlusClick}) => {
   return (
     <div>
       <Toolbar
-        left={<Link to="/"><MenuIcon history={history}/></Link>}
+        left={<BackLink history={history}><MenuIcon/></BackLink>}
         right={[
           <Link to={`/${match.params.soundboard}/share`} key="0">
             <ShareSoundboardIcon {...{dispatch, state, soundboard}}/>
           </Link>,
           <Link to={`/${match.params.soundboard}/edit`} key="1">
-            <EditIcon {...{dispatch}} view="editSoundboard"/>
+            <EditIcon/>
           </Link>
         ]}
       >{soundboard.name}</Toolbar>
@@ -42,11 +43,9 @@ const Soundboard = ({match, history, dispatch, state, onPlusClick}) => {
         <Grid>
           {Object.keys(sounds).map((key, i) => (
             sounds[key] && (
-              <SoundTile
-                key={i}
-                name={sounds[key].name}
-                src={sounds[key].src}
-              />
+              <SoundTile key={i} src={sounds[key].src}>
+                {sounds[key].name}
+              </SoundTile>
             )
           ))}
           {soundboard.locked ||

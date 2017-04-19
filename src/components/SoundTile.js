@@ -1,7 +1,7 @@
 import React from 'react'
 import Tile from './Tile'
 
-const SoundTile = ({src, name}) => {
+const SoundTile = ({src, children}) => {
   const audio = new Audio(src)
   const play = () => {
     audio.currentTime = 0
@@ -9,7 +9,7 @@ const SoundTile = ({src, name}) => {
   }
   return (
     <Tile onMouseDown={play}>
-      <h2>{name}</h2>
+      {children}
     </Tile>
   )
 }

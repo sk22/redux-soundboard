@@ -19,10 +19,9 @@
   "devDependencies": {
     "babel-eslint": "^7.2.2",
     "eslint": "^3.19.0",
-    "eslint-config-xo-space": "^0.16.0",
-    "eslint-plugin-flowtype": "^2.30.4",
     "gh-pages": "^0.12.0",
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "standard": "^10.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,19 +29,13 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "node -e \"require('fs').renameSync('./build/index.html', './build/200.html')\"",
-    "deploy": "surge build"
+    "deploy": "surge build redux-soundboard.surge.sh"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": [
       "react-app",
-      "xo-space"
-    ],
-    "rules": {
-      "semi": [
-        "error",
-        "never"
-      ]
-    }
+      "standard"
+    ]
   }
 }
