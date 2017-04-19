@@ -28,7 +28,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "predeploy": "node -e \"require('fs').renameSync('./build/index.html', './build/200.html')\"",
+    "rename": "node -e \"require('fs').renameSync('./build/index.html', './build/200.html')\"",
+    "predeploy": "yarn build && yarn rename",
     "deploy": "surge build redux-soundboard.surge.sh"
   },
   "eslintConfig": {

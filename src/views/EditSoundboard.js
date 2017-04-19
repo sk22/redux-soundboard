@@ -37,7 +37,7 @@ const EditSoundboard = ({
         right={
           <Link to="/">
             <DeleteSoundboardIcon
-              {...{dispatch}}
+              dispatch={dispatch}
               soundboard={key}
             />
           </Link>}

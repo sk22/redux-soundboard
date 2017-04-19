@@ -17,7 +17,7 @@ const Soundboards = ({dispatch, soundboards, onPlusClick}) => (
     <Toolbar
       left={<MenuIcon/>}
       right={[
-        <ImportSoundboardIcon {...{dispatch}} key="0"/>,
+        <ImportSoundboardIcon dispatch={dispatch} key="0"/>,
         <Link to="/edit" key="1"><EditIcon/></Link>
       ]}
     >Soundboards</Toolbar>
