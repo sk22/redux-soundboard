@@ -5,7 +5,7 @@ import omit from 'lodash.omit'
 import {addSound, deleteSound} from '../actions'
 
 const initialState = {
-  0: {name: 'Beep', src: process.env.PUBLIC_URL + '/beep.mp3'}
+  [md5('/beep.mp3')]: {name: 'Beep', src: process.env.PUBLIC_URL + '/beep.mp3'}
 }
 
 export default createReducer({
