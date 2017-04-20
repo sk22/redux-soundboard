@@ -9,6 +9,16 @@ describe('get highest key', () => {
     const state = {1: {}, 5: {}, 4: {}}
     expect(getHighestKey(state)).toBe(5)
   })
+
+  it('returns -1 when no items in object', () => {
+    const state = {}
+    expect(getHighestKey(state)).toBe(-1)
+  })
+
+  it('returns 0 if highest key is 0', () => {
+    const state = {0: {}}
+    expect(getHighestKey(state)).toBe(0)
+  })
 })
 
 describe('random digit', () => {

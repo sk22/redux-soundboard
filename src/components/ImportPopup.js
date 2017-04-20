@@ -2,41 +2,43 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {resetShare, setImporting} from '../actions'
 import TextField from './TextField'
-import SharePopup, {PopupButton} from './SharePopup'
+import ToggleablePopup, {PopupButton} from './ToggleablePopup'
 import {importSoundboard} from '../share'
 
 const ShareImportPopup = (
-  {state, importing, showImport: show, onImportRequest, onCloseRequest}
+  {importing, showImport, sounds, onImportRequest, onCloseRequest}
 ) => {
-  let urlField
-  let setUrlField = n => {
-    urlField = n
+  let textField
+  let setTextField = n => {
+    textField = n
   }
 
   return (
-    <SharePopup show={show} onCloseRequest={onCloseRequest}>
+    <ToggleablePopup show={showImport} onCloseRequest={onCloseRequest}>
       {importing ? <TextField disabled value="Importing..."/> : [
         <TextField
-          type="url"
-          placeholder="Import URL"
-          innerRef={setUrlField}
+          type="text"
+          placeholder="Import Key"
+          innerRef={setTextField}
           key="0"
         />,
         <PopupButton onClick={() => {
-          onImportRequest({state, url: urlField.value})
+          onImportRequest({sounds, soundboardKey: textField.value})
         }} key="1">Import</PopupButton>
       ]}
-    </SharePopup>
+    </ToggleablePopup>
   )
 }
 
-const mapStateToProps = state => ({...state.current, state})
+const mapStateToProps = ({current: {showImport, importing}, sounds}) => ({
+  showImport, importing, sounds
+})
 
 const mapDispatchToProps = dispatch => ({
   onCloseRequest: () => dispatch(resetShare()),
-  onImportRequest: async ({state, url}) => {
+  onImportRequest: async ({sounds, soundboardKey}) => {
     dispatch(setImporting(true))
-    await importSoundboard({state, url, dispatch})
+    await importSoundboard({dispatch, sounds, soundboardKey})
     dispatch(resetShare())
   }
 })

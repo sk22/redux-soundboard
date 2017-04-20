@@ -2,9 +2,12 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
+import {setShareUrl, setShowShare} from '../actions'
+import {importSoundboard, exportSoundboard} from '../share'
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import ShareExportPopup from '../components/ShareExportPopup'
+import SharePopup from '../components/SharePopup'
+import SoundGrid from '../components/SoundGrid'
 import {
   MenuIcon,
   BackLink,
@@ -12,50 +15,55 @@ import {
   ShareSoundboardIcon
 } from '../components/Icons'
 
-import SoundTile from '../components/SoundTile'
-import Tile from '../components/Tile'
-import Plus from '../components/Plus'
-import Grid from '../components/Grid'
-
-const Soundboard = ({match, history, dispatch, state, onPlusClick}) => {
-  const soundboard = state.soundboards[match.params.soundboard]
-  const sounds = soundboard.sounds.map(key => state.sounds[key])
-
+const Soundboard = ({
+  history, dispatch, soundboard, sounds, soundboardKey, location, match,
+  onExportRequest, onImportRequest
+}) => {
+  if (!soundboard) onImportRequest({sounds, soundboardKey})
   return (
     <div>
       <Toolbar
         left={<BackLink history={history}><MenuIcon/></BackLink>}
-        right={[
-          <ShareSoundboardIcon {...{dispatch, state, soundboard}} key="0"/>,
-          <Link to={`/${match.params.soundboard}/edit`} key="1">
-            <EditIcon/>
-          </Link>
+        right={soundboard && [
+          <ShareSoundboardIcon
+            onClick={() => onExportRequest({
+              history, sounds, soundboard, soundboardKey
+            })}
+            key="0"
+          />,
+          <Link to={`/${soundboardKey}/edit`} key="1"><EditIcon/></Link>
         ]}
-      >{soundboard.name}</Toolbar>
+      >{soundboard ? soundboard.name : 'Loading...'}</Toolbar>
       <Main>
-        <Grid>
-          {Object.keys(sounds).map((key, i) => (
-            sounds[key] && (
-              <SoundTile key={i} src={sounds[key].src}>
-                {sounds[key].name}
-              </SoundTile>
-            )
-          ))}
-          {soundboard.locked ||
-            <Link to={`/${match.params.soundboard}/add`}>
-              <Tile><Plus>+</Plus></Tile>
-            </Link>}
-        </Grid>
+        {soundboard && (
+          <SoundGrid soundboard={soundboard} sounds={sounds} match={match}/>
+        )}
       </Main>
-      <ShareExportPopup/>
+      <SharePopup/>
     </div>
   )
 }
 
-const mapStateToProps = state => ({state})
+const mapStateToProps = ({current, soundboards, sounds}, {match}) => ({
+  match,
+  sounds,
+  soundboard: soundboards[match.params.soundboard],
+  soundboardKey: match.params.soundboard
+})
 
 const mapDispatchToProps = dispatch => ({
-  dispatch
+  onExportRequest: async ({history, sounds, soundboard, soundboardKey}) => {
+    dispatch(setShowShare(true))
+    const id = await exportSoundboard({
+      dispatch, sounds, soundboard, history, soundboardKey
+    })
+    history.replace(`/${id}`)
+    dispatch(setShareUrl(`${window.location.origin}/${id}`))
+  },
+
+  onImportRequest: ({sounds, soundboardKey}) => {
+    importSoundboard({dispatch, location, sounds, soundboardKey})
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Soundboard)

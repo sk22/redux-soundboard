@@ -1,11 +1,5 @@
 import React from 'react'
 import Icon from './Icon'
-import {
-  deleteSoundboard,
-  setShowShare,
-  setShowImport,
-  setShareUrl
-} from '../actions'
 
 import menu from '../icons/menu.svg'
 import back from '../icons/back.svg'
@@ -13,49 +7,28 @@ import edit from '../icons/edit.svg'
 import deleteIcon from '../icons/delete.svg'
 import share from '../icons/share.svg'
 import importIcon from '../icons/import.svg'
-import {exportSoundboard} from '../share'
 
-export const MenuIcon = props => <Icon src={menu} {...props}/>
+export const MenuIcon = props => (<Icon src={menu} alt="menu" {...props}/>)
 
-export const EditIcon = props => <Icon src={edit} {...props}/>
+export const EditIcon = props => (<Icon src={edit} alt="edit" {...props}/>)
 
-export const BackIcon = props => <Icon src={back} {...props}/>
+export const BackIcon = props => (<Icon src={back} alt="back" {...props}/>)
 
-export const BackLink = ({history, children = <BackIcon/>, ...props}) => (
-  <a onClick={history.goBack} children={children} {...props}/>
+export const BackLink = ({history, children = <BackIcon/>, ...props}) => {
+  const goBack = () => history.length ? history.goBack() : history.replace('/')
+  return (<a onClick={goBack} children={children} {...props}/>)
+}
+
+export const DeleteSoundboardIcon = props => (
+  <Icon src={deleteIcon} {...props}/>
 )
 
-export const DeleteSoundboardIcon = ({dispatch, soundboard}) => (
-  <Icon
-    src={deleteIcon}
-    onClick={() => dispatch(deleteSoundboard(soundboard))}
-  />
-)
+export const ShareSoundboardIcon = props => (<Icon src={share} {...props}/>)
 
-export const ShareSoundboardIcon = ({dispatch, ...data}) => (
-  <Icon
-    src={share}
-    onClick={async () => {
-      console.log('clicked share')
-      dispatch(setShowShare(true))
-      const url = await exportSoundboard(data)
-      dispatch(setShareUrl(url))
-      console.log(url)
-    }}
-  />
-)
-
-export const ImportSoundboardIcon = ({dispatch}) => (
-  <Icon
-    src={importIcon}
-    onClick={() => dispatch(setShowImport(true))}
-  />
+export const ImportSoundboardIcon = props => (
+  <Icon src={importIcon} {...props}/>
 )
 
 export const DeleteIcon = props => (
-  <Icon
-    {...props}
-    src={deleteIcon}
-    alt="delete"
-  />
+  <Icon src={deleteIcon} {...props} alt="delete"/>
 )

@@ -9,15 +9,17 @@ import {MenuIcon, EditIcon, ImportSoundboardIcon} from '../components/Icons'
 import Tile from '../components/Tile'
 import Grid from '../components/Grid'
 import Plus from '../components/Plus'
-import ShareImportPopup from '../components/ShareImportPopup'
-import {addSoundboard} from '../actions'
+import ImportPopup from '../components/ImportPopup'
+import {addSoundboard, setShowImport} from '../actions'
 
-const Soundboards = ({dispatch, soundboards, onPlusClick}) => (
+const Soundboards = ({
+  dispatch, soundboards, history, onPlusClick, onImportClick
+}) => (
   <div>
     <Toolbar
       left={<MenuIcon/>}
       right={[
-        <ImportSoundboardIcon dispatch={dispatch} key="0"/>,
+        <ImportSoundboardIcon onClick={onImportClick} key="0"/>,
         <Link to="/edit" key="1"><EditIcon/></Link>
       ]}
     >Soundboards</Toolbar>
@@ -31,7 +33,7 @@ const Soundboards = ({dispatch, soundboards, onPlusClick}) => (
         <Tile onClick={onPlusClick}><Plus>+</Plus></Tile>
       </Grid>
     </Main>
-    <ShareImportPopup/>
+    <ImportPopup history={history}/>
   </div>
 )
 
@@ -41,7 +43,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  onPlusClick: () => dispatch(addSoundboard())
+  onPlusClick: () => dispatch(addSoundboard()),
+  onImportClick: () => dispatch(setShowImport(true))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Soundboards)

@@ -64,32 +64,8 @@ describe('soundboards reducer', () => {
     })
   })
 
-  it('increments keys based on last key\'s value', () => {
-    const state = {
-      1: {name: 'Foo', sounds: [], locked: false}
-    }
-    const result = soundboards(state, addSoundboard({name: 'Bar'}))
-    expect(result).toEqual({
-      1: {name: 'Foo', sounds: [], locked: false},
-      2: {name: 'Bar', sounds: [], locked: false}
-    })
-  })
-
-  it('starts with 0 when all deleted', () => {
-    const result = soundboards({}, addSoundboard(
-      {name: 'Zero', sounds: [], locked: false}
-    ))
-    expect(result).toEqual({0: {name: 'Zero', sounds: [], locked: false}})
-  })
-
-  it('adds default soundboard when no payload given', () => {
+  it('adds a default soundboard when no payload given', () => {
     const result = soundboards({}, addSoundboard())
-    expect(result).toEqual({
-      0: {
-        name: 'New Soundboard',
-        sounds: [],
-        locked: false
-      }
-    })
+    expect(Object.keys(result).length).toBe(1)
   })
 })

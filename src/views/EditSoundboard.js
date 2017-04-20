@@ -8,25 +8,26 @@ import {DeleteSoundboardIcon, BackLink, DeleteIcon} from '../components/Icons'
 
 import {List, ListItem} from '../components/List'
 import TextField from '../components/TextField'
-import {updateSoundboard} from '../actions'
+import {updateSoundboard, deleteSoundboard} from '../actions'
 
 const EditSoundboard = ({
   dispatch,
   history,
   match,
-  sounds: stateSounds,
+  sounds: allSounds,
+  soundboardKey,
   soundboards,
   onNameChange,
+  onDeleteSound,
   onDelete
 }) => {
   let name
   let setName = n => {
     name = n
   }
-  const {soundboard: key} = match.params
-  const soundboard = soundboards[key]
-  const sounds = soundboard.sounds.map(key => ({
-    key, ...stateSounds[key]
+  const soundboard = soundboards[soundboardKey]
+  const sounds = soundboard.sounds.map(soundboardKey => ({
+    soundboardKey, ...allSounds[soundboardKey]
   }))
   const soundKeys = soundboard.sounds
 
@@ -36,10 +37,7 @@ const EditSoundboard = ({
         left={<BackLink history={history}/>}
         right={
           <Link to="/">
-            <DeleteSoundboardIcon
-              dispatch={dispatch}
-              soundboard={key}
-            />
+            <DeleteSoundboardIcon onClick={() => onDelete(soundboardKey)}/>
           </Link>}
       >Edit Soundboard</Toolbar>
       <Main>
@@ -49,7 +47,7 @@ const EditSoundboard = ({
           placeholder="Name"
           value={soundboard.name}
           innerRef={setName}
-          onChange={() => onNameChange(key, name.value)}
+          onChange={() => onNameChange(soundboardKey, name.value)}
         />
         <List>
           {sounds.map((sound, i) => (
@@ -58,7 +56,7 @@ const EditSoundboard = ({
               right={
                 <DeleteIcon
                   compact
-                  onClick={() => onDelete(key, soundKeys, i)}
+                  onClick={() => onDeleteSound(soundboardKey, soundKeys, i)}
                 />}
             >{sound.name}</ListItem>
           ))}
@@ -68,16 +66,22 @@ const EditSoundboard = ({
   )
 }
 
-const mapStateToProps = ({soundboards, sounds}) => ({soundboards, sounds})
+const mapStateToProps = ({soundboards, sounds}, {match}) => ({
+  soundboardKey: match.params.soundboard,
+  soundboards,
+  sounds
+})
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
+  onDelete: key => dispatch(deleteSoundboard(key)),
   onNameChange: (soundboard, name) => {
     dispatch(updateSoundboard({soundboard, update: {name}}))
   },
-  onDelete: (soundboard, sounds, i) => {
+  onDeleteSound: (soundboard, sounds, i) => {
     dispatch(updateSoundboard({
-      soundboard, update: {
+      soundboard,
+      update: {
         sounds: [...sounds.slice(0, i), ...sounds.slice(i + 1, sounds.length)]
       }
     }))

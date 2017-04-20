@@ -6,14 +6,15 @@ import {
   resetShare,
   setImporting
 } from '../actions'
+
 describe('current reducer', () => {
   it('returns correct initial state', () => {
     const result = current(undefined, {})
     expect(result).toEqual({
       showShare: false,
       showImport: false,
-      url: null,
-      importing: false
+      importing: false,
+      url: null
     })
   })
 

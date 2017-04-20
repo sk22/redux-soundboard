@@ -20,9 +20,9 @@ const initialState = {
 }
 
 export default createReducer({
-  [addSoundboard]: (state, soundboard) => ({
+  [addSoundboard]: (state, {soundboard = {}, key} = {}) => ({
     ...state,
-    [generateString(16)(32)]: {...soundboardTemplate, ...soundboard}
+    [key || generateString(16)(32)]: {...soundboardTemplate, ...soundboard}
   }),
 
   [deleteSoundboard]: (state, key) => omit(state, key),

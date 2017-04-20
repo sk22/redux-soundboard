@@ -11,7 +11,7 @@ const initialState = {
 export default createReducer({
   [addSound]: (state, sound) => ({
     ...state,
-    [getHighestKey(state) + 1 || 0]: sound
+    [getHighestKey(state) + 1]: sound
   }),
 
   [deleteSound]: (state, key) => omit(state, key)
