@@ -5,7 +5,6 @@ import {
   addSoundboard,
   deleteSoundboard
 } from './actions'
-import {getHighestKey} from './util'
 
 const gistApiUrl = 'https://api.github.com/gists'
 const getGistUrl = key => `${gistApiUrl}/${key}`
@@ -45,6 +44,7 @@ const filterKey = str => {
   if (/https?:\/\/.*\//.test(str)) {
     return /https?:\/\/.*\/(.*)$/.exec(str)[1]
   }
+  return str
 }
 
 export const importSoundboard = async ({
@@ -55,13 +55,9 @@ export const importSoundboard = async ({
   const data = await (await fetch(url)).json()
 
   const soundboard = JSON.parse(data.files['soundboard.json'].content)
-  const highestKey = getHighestKey(allSounds)
   dispatch(addSoundboard({
     key: soundboardKey,
-    soundboard: {
-      ...soundboard,
-      sounds: soundboard.sounds.map((_, i) => highestKey + i + 1)
-    }
+    soundboard
   }))
 
   Object.keys(data.files).forEach(async fileKey => {

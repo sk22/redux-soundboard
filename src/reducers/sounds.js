@@ -1,5 +1,5 @@
 import {createReducer} from 'redux-act'
-import {getHighestKey} from '../util'
+import md5 from 'md5'
 import omit from 'lodash.omit'
 
 import {addSound, deleteSound} from '../actions'
@@ -11,7 +11,7 @@ const initialState = {
 export default createReducer({
   [addSound]: (state, sound) => ({
     ...state,
-    [getHighestKey(state) + 1]: sound
+    [md5(sound.src)]: sound
   }),
 
   [deleteSound]: (state, key) => omit(state, key)

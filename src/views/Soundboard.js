@@ -62,7 +62,7 @@ const mapDispatchToProps = dispatch => ({
   },
 
   onImportRequest: ({sounds, soundboardKey}) => {
-    importSoundboard({dispatch, location, sounds, soundboardKey})
+    importSoundboard({dispatch, sounds, soundboardKey})
   }
 })
 
