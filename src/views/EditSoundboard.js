@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
+import Container from '../components/Container'
 import {DeleteSoundboardIcon, BackLink, DeleteIcon} from '../components/Icons'
 
 import {List, ListItem} from '../components/List'
@@ -34,26 +35,28 @@ const EditSoundboard = ({
           </Link>}
       >Edit Soundboard</Toolbar>
       <Main>
-        <TextField
-          type="text"
-          id="name"
-          placeholder="Name"
-          value={soundboard.name}
-          innerRef={setName}
-          onChange={() => onNameChange(id, name.value)}
-        />
-        <List>
-          {sounds.map((sound, i) => (
-            <ListItem
-              key={i}
-              right={
-                <DeleteIcon
-                  compact
-                  onClick={() => onDeleteSound(id, soundKeys, i)}
-                />}
-            >{sound.name}</ListItem>
-          ))}
-        </List>
+        <Container>
+          <TextField
+            type="text"
+            id="name"
+            placeholder="Name"
+            value={soundboard.name}
+            innerRef={setName}
+            onChange={() => onNameChange(id, name.value)}
+          />
+          <List>
+            {sounds.map((sound, i) => (
+              <ListItem
+                key={i}
+                right={
+                  <DeleteIcon
+                    compact
+                    onClick={() => onDeleteSound(id, soundKeys, i)}
+                  />}
+              >{sound.name}</ListItem>
+            ))}
+          </List>
+        </Container>
       </Main>
     </div>
   )

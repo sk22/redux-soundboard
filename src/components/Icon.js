@@ -7,8 +7,10 @@ const Icon = styled.div`
   padding: ${({compact}) => compact ? '.25rem' : '.5rem'};
   margin: ${({compact}) => compact ? '.25rem' : '.5rem'};
   border-radius: 100%;
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  will-change: background;
   &:active {
-    background: ${({active}) => active || '#222'};
+    background: ${({active}) => active || 'rgba(0, 0, 0, 0.3)'};
   }
 `
 

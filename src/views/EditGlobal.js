@@ -4,6 +4,7 @@ import EditSounds from '../components/EditSounds'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
+import Container from '../components/Container'
 import {BackLink} from '../components/Icons'
 
 export default ({history}) => (
@@ -12,11 +13,13 @@ export default ({history}) => (
       Edit Global
     </Toolbar>
     <Main>
-      <h2>Edit Soundboards</h2>
-      <EditSoundboards/>
-      <hr/>
-      <h2>Edit Sounds</h2>
-      <EditSounds/>
+      <Container>
+        <h2>Edit Soundboards</h2>
+        <EditSoundboards/>
+        <hr/>
+        <h2>Edit Sounds</h2>
+        <EditSounds/>
+      </Container>
     </Main>
   </div>
 )

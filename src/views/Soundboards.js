@@ -4,7 +4,12 @@ import {Link} from 'react-router-dom'
 
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
-import {MenuIcon, EditIcon, ImportSoundboardIcon} from '../components/Icons'
+import {
+  MenuIcon,
+  EditIcon,
+  InfoIcon,
+  ImportSoundboardIcon
+} from '../components/Icons'
 
 import Tile from '../components/Tile'
 import Grid from '../components/Grid'
@@ -19,8 +24,9 @@ const Soundboards = ({
     <Toolbar
       left={<MenuIcon/>}
       right={[
-        <ImportSoundboardIcon onClick={onImportClick} key="0"/>,
-        <Link to="/edit" key="1"><EditIcon/></Link>
+        <Link to="/about" key="0"><InfoIcon/></Link>,
+        <ImportSoundboardIcon onClick={onImportClick} key="1"/>,
+        <Link to="/edit" key="2"><EditIcon/></Link>
       ]}
     >Soundboards</Toolbar>
     <Main>
