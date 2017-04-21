@@ -10,7 +10,7 @@ import SharePopup from '../components/SharePopup'
 import SoundGrid from '../components/SoundGrid'
 import {
   MenuIcon,
-  BackLink,
+  MenuLink,
   EditIcon,
   ShareSoundboardIcon
 } from '../components/Icons'
@@ -23,7 +23,7 @@ const Soundboard = ({
   return (
     <div>
       <Toolbar
-        left={<BackLink history={history}><MenuIcon/></BackLink>}
+        left={<MenuLink history={history}><MenuIcon/></MenuLink>}
         right={soundboard && [
           <ShareSoundboardIcon
             onClick={() => onExportRequest({
