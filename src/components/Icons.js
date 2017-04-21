@@ -19,9 +19,15 @@ export const BackLink = ({history, children = <BackIcon/>, ...props}) => {
   return (<a onClick={goBack} children={children} {...props}/>)
 }
 
-export const MenuLink = ({history, children = <BackIcon/>, ...props}) => (
-  <a onClick={() => history.replace('/')} children={children} {...props}/>
-)
+export const MenuLink = ({history, children = <BackIcon/>, ...props}) => {
+  const toMenu = () => {
+    const path = history.location.pathname
+    history.replace('/')
+    history.push(path)
+    history.goBack()
+  }
+  return (<a onClick={toMenu} children={children} {...props}/>)
+}
 
 export const DeleteSoundboardIcon = props => (
   <Icon src={deleteIcon} {...props}/>
