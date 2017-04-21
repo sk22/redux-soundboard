@@ -1,7 +1,7 @@
 {
   "name": "soundboard",
   "version": "0.1.0",
-  "homepage": "http://redux-soundboard.surge.sh/",
+  "homepage": "https://redux-soundboard.surge.sh/",
   "private": true,
   "dependencies": {
     "clipboard": "^1.6.1",

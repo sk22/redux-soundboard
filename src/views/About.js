@@ -19,9 +19,16 @@ export default ({history}) => (
     <Main>
       <Container>
         <section>
-          Copyright &copy; 2017
-          by <StyledLink href="https://github.com/sk22">
-          Samuel Kaiser</StyledLink>
+          <p>
+            Copyright &copy; 2017
+            by <StyledLink href="https://github.com/sk22">
+            Samuel Kaiser</StyledLink>
+          </p>
+          <p>
+            Read more in the project's <StyledLink
+              href="https://github.com/sk22/redux-soundboard/blob/master/README.md">
+              README</StyledLink> file.
+          </p>
         </section>
         <section>
           <h2>Credits</h2>
