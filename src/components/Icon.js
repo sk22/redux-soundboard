@@ -4,8 +4,8 @@ import styled from 'styled-components'
 const Icon = styled.div`
   display: inline-block;
   line-height: 0;
-  ${({compact}) => compact || 'padding: .5rem'};
-  margin: .5rem;
+  padding: ${({compact}) => compact ? '.25rem' : '.5rem'};
+  margin: ${({compact}) => compact ? '.25rem' : '.5rem'};
   border-radius: 100%;
   &:active {
     background: ${({active}) => active || '#222'};
