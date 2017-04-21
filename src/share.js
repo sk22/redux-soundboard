@@ -53,7 +53,6 @@ export const importSoundboard = async ({
 
   const soundboard = JSON.parse(data.files['soundboard.json'].content)
 
-  console.log('importing', id)
   dispatch(addSoundboard({
     id, soundboard
   }))

@@ -29,9 +29,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "rename": "node -e \"require('fs').renameSync('./build/index.html', './build/200.html')\"",
-    "predeploy": "yarn build && yarn rename",
-    "deploy": "surge build redux-soundboard.surge.sh"
+    "prepare": "node prepare-surge",
+    "predeploy": "yarn build && yarn prepare",
+    "deploy": "surge build"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
