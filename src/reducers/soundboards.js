@@ -36,9 +36,9 @@ export default createReducer({
     }
   }),
 
-  [updateSoundboard]: (state, {soundboard, update}) => ({
+  [updateSoundboard]: (state, {id, update}) => ({
     ...state,
-    [soundboard]: {...state[soundboard], ...update}
+    [id]: {...state[id], ...update}
   }),
 
   [renameSoundboard]: (state, {id, newId}) => {

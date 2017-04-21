@@ -68,12 +68,12 @@ const mapStateToProps = ({soundboards, sounds}, {match}) => ({
 const mapDispatchToProps = dispatch => ({
   dispatch,
   onDelete: id => dispatch(deleteSoundboard(id)),
-  onNameChange: (soundboard, name) => {
-    dispatch(updateSoundboard({soundboard, update: {name}}))
+  onNameChange: (id, name) => {
+    dispatch(updateSoundboard({id, update: {name}}))
   },
-  onDeleteSound: (soundboard, sounds, i) => {
+  onDeleteSound: (id, sounds, i) => {
     dispatch(updateSoundboard({
-      soundboard,
+      id,
       update: {
         sounds: [...sounds.slice(0, i), ...sounds.slice(i + 1, sounds.length)]
       }

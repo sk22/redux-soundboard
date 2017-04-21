@@ -55,7 +55,7 @@ describe('soundboards reducer', () => {
       1: {name: 'Foo', sounds: [], locked: false}
     }
     const result = soundboards(state, updateSoundboard({
-      soundboard: 1,
+      id: 1,
       update: {name: 'Bar'}
     }))
     expect(result).toEqual({
