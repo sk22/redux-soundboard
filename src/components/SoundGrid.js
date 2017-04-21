@@ -7,14 +7,14 @@ import Plus from '../components/Plus'
 import Grid from '../components/Grid'
 
 export default ({soundboard, sounds: allSounds, match}) => {
-  const sounds = soundboard.sounds.map(key => allSounds[key])
+  const sounds = soundboard.sounds.map(id => allSounds[id])
 
   return (
     <Grid>
-      {Object.keys(sounds).map((key, i) => (
-        sounds[key] && (
-          <SoundTile key={i} src={sounds[key].src}>
-            {sounds[key].name}
+      {Object.keys(sounds).map((id, i) => (
+        sounds[id] && (
+          <SoundTile key={i} src={sounds[id].src}>
+            {sounds[id].name}
           </SoundTile>
         )
       ))}

@@ -8,11 +8,11 @@ const EditSoundboards = ({soundboards, onDelete}) => {
   return (
     <div>
       <List>
-        {Object.keys(soundboards).map((key, i) => (
+        {Object.keys(soundboards).map((id, i) => (
           <ListItem
             key={i}
-            right={<DeleteIcon compact onClick={() => onDelete(key)}/>}
-          >{soundboards[key].name}</ListItem>
+            right={<DeleteIcon compact onClick={() => onDelete(id)}/>}
+          >{soundboards[id].name}</ListItem>
         ))}
       </List>
     </div>
@@ -22,8 +22,8 @@ const EditSoundboards = ({soundboards, onDelete}) => {
 const mapStateToProps = ({soundboards}) => ({soundboards})
 
 const mapDispatchToProps = dispatch => ({
-  onDelete: key => {
-    dispatch(deleteSoundboard(key))
+  onDelete: id => {
+    dispatch(deleteSoundboard(id))
   }
 })
 

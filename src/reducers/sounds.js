@@ -14,5 +14,5 @@ export default createReducer({
     [md5(sound.src)]: sound
   }),
 
-  [deleteSound]: (state, key) => omit(state, key)
+  [deleteSound]: (state, id) => omit(state, id)
 }, initialState)

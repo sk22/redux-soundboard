@@ -25,9 +25,9 @@ const Soundboards = ({
     >Soundboards</Toolbar>
     <Main>
       <Grid>
-        {Object.keys(soundboards).map((key, i) => (
-          <Link to={`/${key}`} key={i}>
-            <Tile index={key}>{soundboards[key].name}</Tile>
+        {Object.keys(soundboards).map((id, i) => (
+          <Link to={`/${id}`} key={i}>
+            <Tile index={id}>{soundboards[id].name}</Tile>
           </Link>
         ))}
         <Tile onClick={onPlusClick}><Plus>+</Plus></Tile>

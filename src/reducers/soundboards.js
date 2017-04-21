@@ -6,6 +6,7 @@ import {
   addSoundboard,
   deleteSoundboard,
   updateSoundboard,
+  renameSoundboard,
   addSoundToSoundboard
 } from '../actions'
 
@@ -20,12 +21,12 @@ const initialState = {
 }
 
 export default createReducer({
-  [addSoundboard]: (state, {soundboard = {}, key} = {}) => ({
+  [addSoundboard]: (state, {soundboard = {}, id} = {}) => ({
     ...state,
-    [key || generateString(16)(32)]: {...soundboardTemplate, ...soundboard}
+    [id || generateString(16)(32)]: {...soundboardTemplate, ...soundboard}
   }),
 
-  [deleteSoundboard]: (state, key) => omit(state, key),
+  [deleteSoundboard]: (state, id) => omit(state, id),
 
   [addSoundToSoundboard]: (state, {sound, soundboard}) => ({
     ...state,
@@ -38,5 +39,10 @@ export default createReducer({
   [updateSoundboard]: (state, {soundboard, update}) => ({
     ...state,
     [soundboard]: {...state[soundboard], ...update}
-  })
+  }),
+
+  [renameSoundboard]: (state, {id, newId}) => {
+    const soundboard = state[id]
+    return {[newId]: soundboard, ...omit(state, id)}
+  }
 }, initialState)

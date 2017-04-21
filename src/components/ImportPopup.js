@@ -23,7 +23,7 @@ const ShareImportPopup = (
           key="0"
         />,
         <PopupButton onClick={() => {
-          onImportRequest({sounds, soundboardKey: textField.value})
+          onImportRequest({sounds, id: textField.value})
         }} key="1">Import</PopupButton>
       ]}
     </ToggleablePopup>
@@ -36,9 +36,9 @@ const mapStateToProps = ({current: {showImport, importing}, sounds}) => ({
 
 const mapDispatchToProps = dispatch => ({
   onCloseRequest: () => dispatch(resetShare()),
-  onImportRequest: async ({sounds, soundboardKey}) => {
+  onImportRequest: async ({sounds, id}) => {
     dispatch(setImporting(true))
-    await importSoundboard({dispatch, sounds, soundboardKey})
+    await importSoundboard({dispatch, sounds, id})
     dispatch(resetShare())
   }
 })

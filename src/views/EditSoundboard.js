@@ -11,23 +11,16 @@ import TextField from '../components/TextField'
 import {updateSoundboard, deleteSoundboard} from '../actions'
 
 const EditSoundboard = ({
-  dispatch,
-  history,
-  match,
-  sounds: allSounds,
-  soundboardKey,
-  soundboards,
-  onNameChange,
-  onDeleteSound,
-  onDelete
+  dispatch, history, match, sounds: allSounds, id, soundboards, onNameChange,
+  onDeleteSound, onDelete
 }) => {
   let name
   let setName = n => {
     name = n
   }
-  const soundboard = soundboards[soundboardKey]
-  const sounds = soundboard.sounds.map(soundboardKey => ({
-    soundboardKey, ...allSounds[soundboardKey]
+  const soundboard = soundboards[id]
+  const sounds = soundboard.sounds.map(id => ({
+    id, ...allSounds[id]
   }))
   const soundKeys = soundboard.sounds
 
@@ -37,7 +30,7 @@ const EditSoundboard = ({
         left={<BackLink history={history}/>}
         right={
           <Link to="/">
-            <DeleteSoundboardIcon onClick={() => onDelete(soundboardKey)}/>
+            <DeleteSoundboardIcon onClick={() => onDelete(id)}/>
           </Link>}
       >Edit Soundboard</Toolbar>
       <Main>
@@ -47,7 +40,7 @@ const EditSoundboard = ({
           placeholder="Name"
           value={soundboard.name}
           innerRef={setName}
-          onChange={() => onNameChange(soundboardKey, name.value)}
+          onChange={() => onNameChange(id, name.value)}
         />
         <List>
           {sounds.map((sound, i) => (
@@ -56,7 +49,7 @@ const EditSoundboard = ({
               right={
                 <DeleteIcon
                   compact
-                  onClick={() => onDeleteSound(soundboardKey, soundKeys, i)}
+                  onClick={() => onDeleteSound(id, soundKeys, i)}
                 />}
             >{sound.name}</ListItem>
           ))}
@@ -67,14 +60,14 @@ const EditSoundboard = ({
 }
 
 const mapStateToProps = ({soundboards, sounds}, {match}) => ({
-  soundboardKey: match.params.soundboard,
+  id: match.params.soundboard,
   soundboards,
   sounds
 })
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  onDelete: key => dispatch(deleteSoundboard(key)),
+  onDelete: id => dispatch(deleteSoundboard(id)),
   onNameChange: (soundboard, name) => {
     dispatch(updateSoundboard({soundboard, update: {name}}))
   },

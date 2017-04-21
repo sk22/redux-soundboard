@@ -2,7 +2,13 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import {setShareUrl, setShowShare} from '../actions'
+import {
+  setShareUrl,
+  setShowShare,
+  addSoundboard,
+  deleteSoundboard
+} from '../actions'
+
 import {importSoundboard, exportSoundboard} from '../share'
 import Toolbar from '../components/Toolbar'
 import Main from '../components/Main'
@@ -16,10 +22,12 @@ import {
 } from '../components/Icons'
 
 const Soundboard = ({
-  history, dispatch, soundboard, sounds, soundboardKey, location, match,
+  history, dispatch, soundboard, sounds, id, location, match,
   onExportRequest, onImportRequest
 }) => {
-  if (!soundboard) onImportRequest({sounds, soundboardKey})
+  if (!soundboard) {
+    onImportRequest({sounds, id})
+  }
   return (
     <div>
       <Toolbar
@@ -27,11 +35,11 @@ const Soundboard = ({
         right={soundboard && [
           <ShareSoundboardIcon
             onClick={() => onExportRequest({
-              history, sounds, soundboard, soundboardKey
+              history, sounds, soundboard, id
             })}
             key="0"
           />,
-          <Link to={`/${soundboardKey}/edit`} key="1"><EditIcon/></Link>
+          <Link to={`/${id}/edit`} key="1"><EditIcon/></Link>
         ]}
       >{soundboard ? soundboard.name : 'Loading...'}</Toolbar>
       <Main>
@@ -47,23 +55,26 @@ const Soundboard = ({
 const mapStateToProps = ({current, soundboards, sounds}, {match}) => ({
   match,
   sounds,
+  showShare: current.showShare,
   soundboard: soundboards[match.params.soundboard],
-  soundboardKey: match.params.soundboard
+  id: match.params.soundboard
 })
 
 const mapDispatchToProps = dispatch => ({
-  onExportRequest: async ({history, sounds, soundboard, soundboardKey}) => {
+  onExportRequest: async ({history, sounds, soundboard, id}) => {
     dispatch(setShowShare(true))
-    const id = await exportSoundboard({
-      dispatch, sounds, soundboard, history, soundboardKey
+    const newId = await exportSoundboard({
+      dispatch, sounds, soundboard, history, id
     })
-    history.replace(`/${id}`)
-    dispatch(setShareUrl(`${window.location.origin}/${id}`))
+    dispatch(addSoundboard({id: newId, soundboard}))
+    history.replace(`/${newId}`)
+    dispatch(deleteSoundboard(id))
+    dispatch(setShareUrl(`${window.location.origin}/${newId}`))
   },
 
-  onImportRequest: ({sounds, soundboardKey}) => {
-    importSoundboard({dispatch, sounds, soundboardKey})
-  }
+  onImportRequest: ({sounds, id}) => (
+    importSoundboard({dispatch, sounds, id})
+  )
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Soundboard)
