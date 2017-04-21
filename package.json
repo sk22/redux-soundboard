@@ -31,7 +31,7 @@
     "eject": "react-scripts eject",
     "prepare": "node prepare-surge",
     "predeploy": "yarn build && yarn prepare",
-    "deploy": "surge build"
+    "deploy": "surge build redux-soundboard.surge.sh"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
